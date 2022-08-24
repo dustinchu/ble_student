@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/user/Documents/fluttere_code/ble_hue/ble/build/permission_handler/intermediates/merged_res/release/values-ml/values-ml.xml",
+            "map": [
+                {
+                    "source": "/Users/user/.gradle/caches/transforms-3/348f6d52d990d4fb4fcc5abc17a1cdcd/transformed/core-1.6.0/res/values-ml/values-ml.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/user/Documents/fluttere_code/ble_hue/ble/build/permission_handler/intermediates/incremental/mergeReleaseResources/merged.dir/values-ml/values-ml.xml",
+            "map": [
+                {
+                    "source": "/Users/user/.gradle/caches/transforms-3/348f6d52d990d4fb4fcc5abc17a1cdcd/transformed/core-1.6.0/res/values-ml/values-ml.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

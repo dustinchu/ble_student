@@ -1,0 +1,38 @@
+{
+  "name": "reactive_ble_mobile",
+  "version": "0.0.1",
+  "summary": "Bluetooth Low Energy (BLE) Flutter plug-in",
+  "description": "Bluetooth Low Energy (BLE) Flutter plug-in",
+  "homepage": "https://github.com/PhilipsHue/flutter_reactive_ble",
+  "license": {
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Your Company": "email@example.com"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": "Classes/**/*",
+  "public_header_files": "Classes/**/*.h",
+  "dependencies": {
+    "Flutter": [
+
+    ],
+    "Protobuf": [
+      "~> 3.5"
+    ],
+    "SwiftProtobuf": [
+      "~> 1.0"
+    ]
+  },
+  "platforms": {
+    "ios": "11.0",
+    "osx": "10.13"
+  },
+  "pod_target_xcconfig": {
+    "GCC_PREPROCESSOR_DEFINITIONS": "$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1"
+  },
+  "swift_versions": "4.2",
+  "swift_version": "4.2"
+}
