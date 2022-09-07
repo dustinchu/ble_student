@@ -14,7 +14,7 @@ class BleChartStatus extends ChangeNotifier {
   List<List<FlSpot>> acc = [[], [], [], [], [], [], [], [], [], []];
   String showData = "";
   int minx = 0;
-  int maxx = 25;
+  int maxx = 300;
   var rng = Random();
   int index = 0;
   int lineCount = 6;
@@ -55,7 +55,7 @@ class BleChartStatus extends ChangeNotifier {
   Future<void> cleanData() async {
     index = 0;
     minx = 0;
-    maxx = 25;
+    maxx = 300;
     // data.clear();
   }
 
@@ -92,33 +92,34 @@ class BleChartStatus extends ChangeNotifier {
 
   List<FlSpot> list1601Move(int index, double d) {
     List<FlSpot> f = [];
-    for (var i = 0; i < 24; i++) {
+    for (var i = 0; i < maxx - 1; i++) {
       // print(
       //     "value  index ==$index=====$i   ${data[index][i + 1].y}    len ==${data[index].length}");
       double x = i.toDouble();
       double y = six[index][i + 1].y;
       f.add(FlSpot(x, y));
     }
-    f.add(FlSpot(25, d));
+    f.add(FlSpot(maxx.toDouble(), d));
     // print("f====$f");
     return f;
   }
 
   set1601Data(List<int> a) {
-    showData = a.map((i) => i.toString()).join(",");
     int data1 = hexToInt(a[1].toRadixString(16).padLeft(2, '0') +
         a[0].toRadixString(16).padLeft(2, '0'));
     int data2 = hexToInt(a[3].toRadixString(16).padLeft(2, '0') +
         a[2].toRadixString(16).padLeft(2, '0'));
     int data3 = hexToInt(a[5].toRadixString(16).padLeft(2, '0') +
         a[4].toRadixString(16).padLeft(2, '0'));
+
     int data4 = hexToInt(a[7].toRadixString(16).padLeft(2, '0') +
         a[6].toRadixString(16).padLeft(2, '0'));
     int data5 = hexToInt(a[9].toRadixString(16).padLeft(2, '0') +
         a[8].toRadixString(16).padLeft(2, '0'));
     int data6 = hexToInt(a[11].toRadixString(16).padLeft(2, '0') +
         a[10].toRadixString(16).padLeft(2, '0'));
-
+    showData =
+        "qx:$data1\nqy:$data2\nqz:$data3\nax:$data4\nay:$data5\naz:$data6";
     int size = 0;
     if (six[0].isNotEmpty) {
       size = six[0].length;
@@ -134,8 +135,8 @@ class BleChartStatus extends ChangeNotifier {
         six[4] = list1601Move(4, calculate1601(data5).toDouble());
         six[5] = list1601Move(5, calculate1601(data6).toDouble());
       } else {
-        print(
-            "index ===$index   data 3==${six[4]}   ${six[4].isEmpty}   ||  $data4   len  ${six[4].length}   index ==$index   data==${calculate1601(data1).toDouble()}");
+        // print(
+        //     "index ===$index   data 3==${six[4]}   ${six[4].isEmpty}   ||  $data4   len  ${six[4].length}   index ==$index   data==${calculate1601(data1).toDouble()}");
         six[0].add(
             FlSpot(six[0].length.toDouble(), calculate1601(data1).toDouble()));
         six[1].add(
@@ -176,14 +177,14 @@ class BleChartStatus extends ChangeNotifier {
 
   List<FlSpot> list1605Move(int index, double d, bool is1606) {
     List<FlSpot> f = [];
-    for (var i = 0; i < 24; i++) {
+    for (var i = 0; i < maxx - 1; i++) {
       // print(
       //     "value  index ==$index=====$i   ${data[index][i + 1].y}    len ==${data[index].length}");
       double x = i.toDouble();
       double y = is1606 ? acc[index][i + 1].y : dmp[index][i + 1].y;
       f.add(FlSpot(x, y));
     }
-    f.add(FlSpot(25, d));
+    f.add(FlSpot(maxx.toDouble(), d));
     // print("f====$f");
     return f;
   }

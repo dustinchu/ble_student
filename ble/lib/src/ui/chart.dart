@@ -332,11 +332,16 @@ class LineChartSample1State extends State<LineChartSample1> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
-                    child: Text((bleChartStatus.type == 1602 ||
-                            bleChartStatus.type == 1604)
-                        ? ""
-                        : bleChartStatus.showData),
+                    height: bleChartStatus.type == 1602 ||
+                            bleChartStatus.type == 1604
+                        ? 30
+                        : 100,
+                    child: Center(
+                      child: Text((bleChartStatus.type == 1602 ||
+                              bleChartStatus.type == 1604)
+                          ? ""
+                          : bleChartStatus.showData),
+                    ),
                   ),
                 ],
               ),

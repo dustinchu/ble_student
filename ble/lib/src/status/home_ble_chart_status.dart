@@ -29,7 +29,7 @@ class HomeBleChartStatus extends ChangeNotifier {
 
   init(String deviceID) {
     minx[deviceID] = 0;
-    maxx[deviceID] = 25;
+    maxx[deviceID] = 300;
     index[deviceID] = 0;
     lineCount[deviceID] = 6;
     type[deviceID] = 1601;
@@ -69,7 +69,7 @@ class HomeBleChartStatus extends ChangeNotifier {
   cleanData(String deviceId) {
     index[deviceId] = 0;
     minx[deviceId] = 0;
-    maxx[deviceId] = 25;
+    maxx[deviceId] = 300;
   }
 
   setLineCount(
@@ -92,20 +92,20 @@ class HomeBleChartStatus extends ChangeNotifier {
 
   List<FlSpot> list1601Move(int index, double d, String deviceId) {
     List<FlSpot> f = [];
-    for (var i = 0; i < 24; i++) {
+    for (var i = 0; i < (maxx[deviceId]! - 1); i++) {
       // print(
       //     "value  index ==$index=====$i   ${data[index][i + 1].y}    len ==${data[index].length}");
       double x = i.toDouble();
       double y = six[deviceId]![index][i + 1].y;
       f.add(FlSpot(x, y));
     }
-    f.add(FlSpot(25, d));
+    f.add(FlSpot(maxx[deviceId]!.toDouble(), d));
     // print("f====$f");
     return f;
   }
 
   set1601Data(String deviceId, List<int> a) {
-    showData[deviceId] = a.map((i) => i.toString()).join(",");
+    // showData[deviceId] = a.map((i) => i.toString()).join(",");
     int data1 = hexToInt(a[1].toRadixString(16).padLeft(2, '0') +
         a[0].toRadixString(16).padLeft(2, '0'));
     int data2 = hexToInt(a[3].toRadixString(16).padLeft(2, '0') +
@@ -118,6 +118,8 @@ class HomeBleChartStatus extends ChangeNotifier {
         a[8].toRadixString(16).padLeft(2, '0'));
     int data6 = hexToInt(a[11].toRadixString(16).padLeft(2, '0') +
         a[10].toRadixString(16).padLeft(2, '0'));
+    showData[deviceId] =
+        "qx:$data1\nqy:$data2\nqz:$data3\nax:$data4\nay:$data5\naz:$data6";
     int size = 0;
     if (six[deviceId] != null) {
       if (six[deviceId]![0].isNotEmpty) {
@@ -172,7 +174,7 @@ class HomeBleChartStatus extends ChangeNotifier {
 
   List<FlSpot> list1605Move(int index, double d, bool is1606, String deviceId) {
     List<FlSpot> f = [];
-    for (var i = 0; i < 24; i++) {
+    for (var i = 0; i < (maxx[deviceId]! - 1); i++) {
       // print(
       //     "value  index ==$index=====$i   ${data[index][i + 1].y}    len ==${data[index].length}");
       double x = i.toDouble();
@@ -181,7 +183,7 @@ class HomeBleChartStatus extends ChangeNotifier {
           : dmp[deviceId]![index][i + 1].y;
       f.add(FlSpot(x, y));
     }
-    f.add(FlSpot(25, d));
+    f.add(FlSpot(maxx[deviceId]!.toDouble(), d));
     print("f====$f");
     return f;
   }
@@ -194,6 +196,9 @@ class HomeBleChartStatus extends ChangeNotifier {
         a[2].toRadixString(16).padLeft(2, '0'));
     int data3 = hexToInt(a[5].toRadixString(16).padLeft(2, '0') +
         a[4].toRadixString(16).padLeft(2, '0'));
+    print(a[1].toRadixString(16).padLeft(2, '0') +
+        a[0].toRadixString(16).padLeft(2, '0'));
+    print(data1);
     int size = 0;
     if (dmp[deviceId] != null) {
       if (dmp[deviceId]![0].isNotEmpty) {

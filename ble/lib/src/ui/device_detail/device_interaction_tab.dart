@@ -221,6 +221,20 @@ class DeviceInteractionState extends State<DeviceInteraction> {
         .setElectricity(electricity[0]);
   }
 
+  Future<void> initReadffc3(BleDeviceInteractor bleDeviceInteractor) async {
+    List<int> electricity = await bleDeviceInteractor.readCharacteristic(
+      QualifiedCharacteristic(
+          characteristicId: Uuid.parse('ffc3'),
+          serviceId: Uuid.parse('ffc0'),
+          deviceId: widget.device.id),
+    );
+    print("180f read =======$electricity");
+    if (mounted) {
+      Provider.of<BleChartStatus>(context, listen: false)
+          .setBtn(electricity[0]);
+    }
+  }
+
   Future<void> subscribeCharacteristic2a6e(
       BleDeviceInteractor bleDeviceInteractor) async {
     QualifiedCharacteristic qualified = QualifiedCharacteristic(
@@ -381,6 +395,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (connectionStateUpdate.connectionState ==
           DeviceConnectionState.connected) {
         if (initStatus) {
+          initReadffc3(serviceDiscoverer);
           initSendFF10(serviceDiscoverer, ff10Type);
           initRead1080f(serviceDiscoverer);
           subscribeCharacteristic180f(serviceDiscoverer);

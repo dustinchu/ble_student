@@ -319,11 +319,17 @@ class HomeLineChartSample1State extends State<HomeLineChartSample1> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
-                    child: Text((bleChartStatus.type[widget.deviceId] == 1602 ||
+                    height: (bleChartStatus.type[widget.deviceId] == 1602 ||
                             bleChartStatus.type[widget.deviceId] == 1604)
-                        ? ""
-                        : bleChartStatus.showData[widget.deviceId] ?? ""),
+                        ? 30
+                        : 100,
+                    child: Center(
+                      child: Text(
+                          (bleChartStatus.type[widget.deviceId] == 1602 ||
+                                  bleChartStatus.type[widget.deviceId] == 1604)
+                              ? ""
+                              : bleChartStatus.showData[widget.deviceId] ?? ""),
+                    ),
                   ),
                 ],
               ),
