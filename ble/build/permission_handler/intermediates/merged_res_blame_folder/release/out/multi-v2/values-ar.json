@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/user/Documents/fluttere_code/ble_hue/ble/build/permission_handler/intermediates/merged_res/release/values-ar/values-ar.xml",
+            "outputFile": "/Users/user/Documents/fluttere_code/ble_student/ble/build/permission_handler/intermediates/incremental/mergeReleaseResources/merged.dir/values-ar/values-ar.xml",
             "map": [
                 {
                     "source": "/Users/user/.gradle/caches/transforms-3/348f6d52d990d4fb4fcc5abc17a1cdcd/transformed/core-1.6.0/res/values-ar/values-ar.xml",
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "outputFile": "/Users/user/Documents/fluttere_code/ble_hue/ble/build/permission_handler/intermediates/incremental/mergeReleaseResources/merged.dir/values-ar/values-ar.xml",
+            "outputFile": "/Users/user/Documents/fluttere_code/ble_student/ble/build/permission_handler/intermediates/merged_res/release/values-ar/values-ar.xml",
             "map": [
                 {
                     "source": "/Users/user/.gradle/caches/transforms-3/348f6d52d990d4fb4fcc5abc17a1cdcd/transformed/core-1.6.0/res/values-ar/values-ar.xml",

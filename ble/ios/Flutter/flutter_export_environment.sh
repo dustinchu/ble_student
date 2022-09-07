@@ -1,9 +1,9 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/user/fvm/versions/2.5.3"
-export "FLUTTER_APPLICATION_PATH=/Users/user/Documents/fluttere_code/ble_hue/ble"
+export "FLUTTER_APPLICATION_PATH=/Users/user/Documents/fluttere_code/ble_student/ble"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=/Users/user/Documents/fluttere_code/ble_hue/ble/lib/main.dart"
+export "FLUTTER_TARGET=/Users/user/Documents/fluttere_code/ble_student/ble/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=5.0.2"
 export "FLUTTER_BUILD_NUMBER=5.0.2"
@@ -12,4 +12,4 @@ export "DART_OBFUSCATION=false"
 export "EXTRA_FRONT_END_OPTIONS=--no-sound-null-safety"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"
-export "PACKAGE_CONFIG=/Users/user/Documents/fluttere_code/ble_hue/ble/.dart_tool/package_config.json"
+export "PACKAGE_CONFIG=/Users/user/Documents/fluttere_code/ble_student/ble/.dart_tool/package_config.json"

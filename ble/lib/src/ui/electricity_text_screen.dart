@@ -9,6 +9,7 @@ class ElectricityTextScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BleChartStatus bleChartStatus = Provider.of<BleChartStatus>(context);
 
-    return Text("電池電量:${bleChartStatus.electricity}%");
+    return Text(
+        "電池電量:${bleChartStatus.electricity == 0 ? "Wait" : bleChartStatus.electricity}%");
   }
 }

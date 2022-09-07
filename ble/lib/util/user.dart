@@ -5,4 +5,5 @@ class User {
   User._internal();
   static User get instance => _singleton;
   BuildContext? context;
+  String clickDeviceName = "";
 }

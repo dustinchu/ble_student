@@ -87,8 +87,8 @@ class _LedInteractionDialogState extends State<_LedInteractionDialog> {
     subscribeStream =
         widget.subscribeToCharacteristic(widget.characteristic).listen((event) {
       // if (!mounted) {
-      print(
-          "subscribeStream    ---------------------------------------$mounted");
+      // print(
+      //     "subscribeStream    ---------------------------------------$mounted");
       if (subscribeStream != null) {
         if (mounted) {
           Provider.of<DialogStatus>(User.instance.context!, listen: false)

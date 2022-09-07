@@ -4,22 +4,22 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="21"
-6-->/Users/user/Documents/fluttere_code/ble_hue/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml
+6-->/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml
 7        android:targetSdkVersion="31" />
-7-->/Users/user/Documents/fluttere_code/ble_hue/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml
+7-->/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml
 8
 9    <!-- required for API 18 - 30 -->
 10    <uses-permission
-10-->/Users/user/Documents/fluttere_code/ble_hue/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:5:5-7:38
+10-->/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:5:5-7:38
 11        android:name="android.permission.BLUETOOTH"
-11-->/Users/user/Documents/fluttere_code/ble_hue/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:6:9-52
+11-->/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:6:9-52
 12        android:maxSdkVersion="30" />
-12-->/Users/user/Documents/fluttere_code/ble_hue/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:7:9-35
+12-->/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:7:9-35
 13    <uses-permission
-13-->/Users/user/Documents/fluttere_code/ble_hue/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:8:5-10:38
+13-->/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:8:5-10:38
 14        android:name="android.permission.BLUETOOTH_ADMIN"
-14-->/Users/user/Documents/fluttere_code/ble_hue/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:9:9-58
+14-->/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:9:9-58
 15        android:maxSdkVersion="30" />
-15-->/Users/user/Documents/fluttere_code/ble_hue/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:10:9-35
+15-->/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/android/src/main/AndroidManifest.xml:10:9-35
 16
 17</manifest>

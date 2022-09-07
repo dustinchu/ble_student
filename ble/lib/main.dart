@@ -11,7 +11,10 @@ import 'package:provider/provider.dart';
 import 'src/ble/ble_logger.dart';
 import 'src/status/ble_chart_status.dart';
 import 'src/status/ble_controller_status.dart';
+import 'src/status/connect.dart';
 import 'src/status/dialog_status.dart';
+import 'src/status/home_ble_chart_status.dart';
+import 'src/status/multiple_chart_status.dart';
 import 'src/ui/ble_status_screen.dart';
 
 // flutter: cr ====QualifiedCharacteristic(characteristicId: fff1, serviceId: ff00, deviceId: 507CF1E3-F50D-E794-E3CF-0CF6220A1BC7)
@@ -46,6 +49,9 @@ void main() {
         ChangeNotifierProvider.value(value: DialogStatus()),
         ChangeNotifierProvider.value(value: BleControllerStatus()),
         ChangeNotifierProvider.value(value: BleChartStatus()),
+        ChangeNotifierProvider.value(value: Connect()),
+        ChangeNotifierProvider.value(value: MultipleChartStatus()),
+        ChangeNotifierProvider.value(value: HomeBleChartStatus()),
         StreamProvider<BleScannerState?>(
           create: (_) => _scanner.state,
           initialData: const BleScannerState(

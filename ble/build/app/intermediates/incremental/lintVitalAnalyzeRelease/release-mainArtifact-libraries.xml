@@ -1,13 +1,13 @@
 <libraries>
   <library
-      name="__local_aars__:/Users/user/Documents/fluttere_code/ble_hue/ble/build/app/intermediates/flutter/release/libs.jar:unspecified@jar"
-      jars="/Users/user/Documents/fluttere_code/ble_hue/ble/build/app/intermediates/flutter/release/libs.jar"
-      resolved="__local_aars__:/Users/user/Documents/fluttere_code/ble_hue/ble/build/app/intermediates/flutter/release/libs.jar:unspecified"/>
+      name="__local_aars__:/Users/user/Documents/fluttere_code/ble_student/ble/build/app/intermediates/flutter/release/libs.jar:unspecified@jar"
+      jars="/Users/user/Documents/fluttere_code/ble_student/ble/build/app/intermediates/flutter/release/libs.jar"
+      resolved="__local_aars__:/Users/user/Documents/fluttere_code/ble_student/ble/build/app/intermediates/flutter/release/libs.jar:unspecified"/>
   <library
-      name="/Users/user/Documents/fluttere_code/ble_hue/ble/android@@:reactive_ble_mobile::release"
-      jars="/Users/user/Documents/fluttere_code/ble_hue/ble/build/reactive_ble_mobile/.transforms/d0e1177420a6166d411b6ce875bcd487/transformed/out/jars/classes.jar"
+      name="/Users/user/Documents/fluttere_code/ble_student/ble/android@@:reactive_ble_mobile::release"
+      jars="/Users/user/Documents/fluttere_code/ble_student/ble/build/reactive_ble_mobile/.transforms/2658c843d6928edca150419d491ec1f3/transformed/out/jars/classes.jar"
       resolved="com.signify.hue.flutterreactiveblelib:reactive_ble_mobile:unspecified"
-      folder="/Users/user/Documents/fluttere_code/ble_hue/ble/build/reactive_ble_mobile/.transforms/d0e1177420a6166d411b6ce875bcd487/transformed/out"
+      folder="/Users/user/Documents/fluttere_code/ble_student/ble/build/reactive_ble_mobile/.transforms/2658c843d6928edca150419d491ec1f3/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -17,10 +17,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/Users/user/Documents/fluttere_code/ble_hue/ble/android@@:permission_handler::release"
-      jars="/Users/user/Documents/fluttere_code/ble_hue/ble/build/permission_handler/.transforms/2260e422ec55852b8ce9eb60c08390c8/transformed/out/jars/classes.jar"
+      name="/Users/user/Documents/fluttere_code/ble_student/ble/android@@:permission_handler::release"
+      jars="/Users/user/Documents/fluttere_code/ble_student/ble/build/permission_handler/.transforms/071e23c31112a33044ce52ef5601e0fc/transformed/out/jars/classes.jar"
       resolved="com.baseflow.permissionhandler:permission_handler:unspecified"
-      folder="/Users/user/Documents/fluttere_code/ble_hue/ble/build/permission_handler/.transforms/2260e422ec55852b8ce9eb60c08390c8/transformed/out"
+      folder="/Users/user/Documents/fluttere_code/ble_student/ble/build/permission_handler/.transforms/071e23c31112a33044ce52ef5601e0fc/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

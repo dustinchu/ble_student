@@ -8,6 +8,7 @@ import 'package:flutter_reactive_ble_example/src/ble/ble_device_connector.dart';
 import 'package:flutter_reactive_ble_example/src/ble/ble_device_interactor.dart';
 import 'package:flutter_reactive_ble_example/src/status/ble_chart_status.dart';
 import 'package:flutter_reactive_ble_example/src/status/ble_controller_status.dart';
+import 'package:flutter_reactive_ble_example/src/ui/btn_screen.dart';
 import 'package:flutter_reactive_ble_example/src/ui/imu_screen.dart';
 import 'package:flutter_reactive_ble_example/src/ui/led_screen.dart';
 import 'package:flutter_reactive_ble_example/util/characteristic_Id.dart';
@@ -18,6 +19,7 @@ import 'package:provider/provider.dart';
 import '../../widgets.dart';
 import '../chart.dart';
 import '../electricity_text_screen.dart';
+import '../temp_text_screen.dart';
 import 'characteristic_interaction_dialog.dart';
 import 'service_discovery_list.dart';
 
@@ -132,28 +134,58 @@ class DeviceInteraction extends StatefulWidget {
 
 class DeviceInteractionState extends State<DeviceInteraction> {
   late List<DiscoveredService> discoveredServices;
+  StreamSubscription<List<int>>? sub180f;
   StreamSubscription<List<int>>? sub1601;
+
   StreamSubscription<List<int>>? sub1602;
   StreamSubscription<List<int>>? sub1604;
   StreamSubscription<List<int>>? sub1605;
   StreamSubscription<List<int>>? sub1606;
-
+  StreamSubscription<List<int>>? sub2a6e;
+  StreamSubscription<List<int>>? subffc3;
+  Timer timer = Timer(const Duration(minutes: 1), () {});
+  int rssi = 0;
   @override
   void dispose() {
     print(" subscribeStream?.cancel();");
+
+    cancelTimer();
     sub1601?.cancel();
     sub1602?.cancel();
     sub1604?.cancel();
     sub1605?.cancel();
     sub1606?.cancel();
+    sub2a6e?.cancel();
+    subffc3?.cancel();
+    sub180f?.cancel();
     super.dispose();
   }
 
   @override
   void initState() {
+    rssi = widget.device.rssi;
+    print("rssi=====$rssi");
+    startTimer();
     discoveredServices = [];
     discoverServices();
     super.initState();
+  }
+
+  startTimer() async {
+    cancelTimer();
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
+      try {
+        rssi = await readRssi();
+        setState(() {});
+      } catch (e) {
+        print("read rssi error$e");
+      }
+    });
+  }
+
+  cancelTimer() {
+    print(" time.cancel();");
+    timer.cancel();
   }
 
   Future<void> discoverServices() async {
@@ -163,9 +195,9 @@ class DeviceInteractionState extends State<DeviceInteraction> {
     });
   }
 
-  Future<void> readRssi() async {
-    final rssi = await widget.viewModel.readRssi();
-    print("rssi===$rssi");
+  Future<int> readRssi() async {
+    final r = await widget.viewModel.readRssi();
+    return r;
   }
 
   initSendFF10(BleDeviceInteractor bleDeviceInteractor, int value) async {
@@ -187,7 +219,40 @@ class DeviceInteractionState extends State<DeviceInteraction> {
     print("180f read =======$electricity");
     Provider.of<BleChartStatus>(context, listen: false)
         .setElectricity(electricity[0]);
-    subscribeCharacteristic180f(bleDeviceInteractor);
+  }
+
+  Future<void> subscribeCharacteristic2a6e(
+      BleDeviceInteractor bleDeviceInteractor) async {
+    QualifiedCharacteristic qualified = QualifiedCharacteristic(
+        characteristicId: Uuid.parse('2A6e'),
+        serviceId: Uuid.parse('181A'),
+        deviceId: widget.device.id);
+    sub2a6e = bleDeviceInteractor
+        .subScribeToCharacteristic(qualified)
+        .listen((event) {
+      if (sub2a6e != null) {
+        if (mounted) {
+          Provider.of<BleChartStatus>(context, listen: false).setTemp(event);
+        }
+      }
+    });
+  }
+
+  Future<void> subscribeCharacteristicffc3(
+      BleDeviceInteractor bleDeviceInteractor) async {
+    QualifiedCharacteristic qualified = QualifiedCharacteristic(
+        characteristicId: Uuid.parse('ffc3'),
+        serviceId: Uuid.parse('ffc0'),
+        deviceId: widget.device.id);
+    subffc3 = bleDeviceInteractor
+        .subScribeToCharacteristic(qualified)
+        .listen((event) {
+      if (subffc3 != null) {
+        if (mounted) {
+          Provider.of<BleChartStatus>(context, listen: false).setBtn(event[0]);
+        }
+      }
+    });
   }
 
   Future<void> subscribeCharacteristic180f(
@@ -196,9 +261,16 @@ class DeviceInteractionState extends State<DeviceInteraction> {
         characteristicId: Uuid.parse('2a19'),
         serviceId: Uuid.parse('180f'),
         deviceId: widget.device.id);
-    sub1601 = bleDeviceInteractor
+    sub180f = bleDeviceInteractor
         .subScribeToCharacteristic(qualified)
         .listen((event) {
+      if (sub180f != null) {
+        if (mounted) {
+          Provider.of<BleChartStatus>(context, listen: false)
+              .setElectricity(event[0]);
+        }
+      }
+
       print("180f sub =======$event");
     });
   }
@@ -212,11 +284,11 @@ class DeviceInteractionState extends State<DeviceInteraction> {
     sub1601 = bleDeviceInteractor
         .subScribeToCharacteristic(qualified)
         .listen((event) {
-      Provider.of<BleChartStatus>(context, listen: false).set1601Data(event);
-      // print("-------------1601 ${event.toString()}");
-      // if (!mounted) {
       if (sub1601 != null) {
-        if (mounted) {}
+        if (mounted) {
+          Provider.of<BleChartStatus>(context, listen: false)
+              .set1601Data(event);
+        }
       }
     });
   }
@@ -230,11 +302,12 @@ class DeviceInteractionState extends State<DeviceInteraction> {
     sub1602 = bleDeviceInteractor
         .subScribeToCharacteristic(qualified)
         .listen((event) {
-      Provider.of<BleChartStatus>(context, listen: false).dmpData(event);
       // print("-------------1602 ${event.toString()}");
       // if (!mounted) {
       if (sub1602 != null) {
-        if (mounted) {}
+        if (mounted) {
+          Provider.of<BleChartStatus>(context, listen: false).dmpData(event);
+        }
       }
     });
   }
@@ -248,11 +321,12 @@ class DeviceInteractionState extends State<DeviceInteraction> {
     sub1604 = bleDeviceInteractor
         .subScribeToCharacteristic(qualified)
         .listen((event) {
-      Provider.of<BleChartStatus>(context, listen: false).dmpData(event);
       // print("-------------sub1604 ${event.toString()}");
       // if (!mounted) {
       if (sub1604 != null) {
-        if (mounted) {}
+        if (mounted) {
+          Provider.of<BleChartStatus>(context, listen: false).dmpData(event);
+        }
       }
     });
   }
@@ -266,11 +340,13 @@ class DeviceInteractionState extends State<DeviceInteraction> {
     sub1605 = bleDeviceInteractor
         .subScribeToCharacteristic(qualified)
         .listen((event) {
-      Provider.of<BleChartStatus>(context, listen: false).set1605Data(event);
       // print("-------------1605 ${event.toString()}");
       // if (!mounted) {
       if (sub1605 != null) {
-        if (mounted) {}
+        if (mounted) {
+          Provider.of<BleChartStatus>(context, listen: false)
+              .set1605Data(event);
+        }
       }
     });
   }
@@ -284,10 +360,12 @@ class DeviceInteractionState extends State<DeviceInteraction> {
     sub1606 = bleDeviceInteractor
         .subScribeToCharacteristic(qualified)
         .listen((event) {
-      Provider.of<BleChartStatus>(context, listen: false).set1605Data(event);
       // if (!mounted) {
       if (sub1606 != null) {
-        if (mounted) {}
+        if (mounted) {
+          Provider.of<BleChartStatus>(context, listen: false)
+              .set1605Data(event);
+        }
       }
     });
   }
@@ -305,12 +383,14 @@ class DeviceInteractionState extends State<DeviceInteraction> {
         if (initStatus) {
           initSendFF10(serviceDiscoverer, ff10Type);
           initRead1080f(serviceDiscoverer);
-          // subscribeCharacteristic180f(serviceDiscoverer);
+          subscribeCharacteristic180f(serviceDiscoverer);
           subscribeCharacteristic1601(serviceDiscoverer);
           subscribeCharacteristic1602(serviceDiscoverer);
           subscribeCharacteristic1604(serviceDiscoverer);
           subscribeCharacteristic1605(serviceDiscoverer);
           subscribeCharacteristic1606(serviceDiscoverer);
+          subscribeCharacteristic2a6e(serviceDiscoverer);
+          subscribeCharacteristicffc3(serviceDiscoverer);
           initStatus = false;
         }
       }
@@ -361,17 +441,18 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                     SizedBox(
                       height: 5,
                     ),
-                    Text("溫度:80°C"),
+                    // Text("溫度:80°C"),
+                    TempTextScreen(),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("RSSI:${widget.device.rssi}"),
+                    Text("RSSI:$rssi"),
                     const SizedBox(
                       height: 5,
                     ),
-                    const Text("按鈕:PUSH"),
+                    const BtnScreen(),
                   ],
                 )
               ],

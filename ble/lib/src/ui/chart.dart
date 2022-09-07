@@ -25,7 +25,10 @@ class _LineChart extends StatelessWidget {
     BleChartStatus bleChartStatus = Provider.of<BleChartStatus>(context);
 
     LineChartBarData getLineChartBarData(int index) {
+      // print("---------chart--------${bleChartStatus.data[index]}");
       return LineChartBarData(
+        show: bleChartStatus.data[index] != null &&
+            bleChartStatus.data[index].isNotEmpty,
         isCurved: true,
         curveSmoothness: 0,
         color: chartColor[index],
@@ -33,7 +36,9 @@ class _LineChart extends StatelessWidget {
         isStrokeCapRound: true,
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
-        spots: bleChartStatus.data.isEmpty ? null : bleChartStatus.data[index],
+        spots: bleChartStatus.data.isEmpty
+            ? [const FlSpot(0, 0)]
+            : bleChartStatus.data[index],
       );
     }
 
@@ -311,8 +316,12 @@ class LineChartSample1State extends State<LineChartSample1> {
                           : _LineChart(isShowingMainData: false),
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 30,
+                    child: Text((bleChartStatus.type == 1602 ||
+                            bleChartStatus.type == 1604)
+                        ? ""
+                        : bleChartStatus.showData),
                   ),
                 ],
               ),

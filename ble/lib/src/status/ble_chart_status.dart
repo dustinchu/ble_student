@@ -10,7 +10,7 @@ class BleChartStatus extends ChangeNotifier {
   var bd = ByteData(4);
   int type = 1601;
   List<List<FlSpot>> data = [[], [], [], [], [], [], [], [], [], []];
-
+  String showData = "";
   int minx = 0;
   int maxx = 25;
   var rng = Random();
@@ -19,7 +19,9 @@ class BleChartStatus extends ChangeNotifier {
   int miny = -32768;
   int maxy = 32767;
   int electricity = 0;
+  double temp = .0;
   double qw = 0.0, qx = 0.0, qy = 0.0, qz = 0.0;
+  int btn = 0;
   cleanDmpData() {
     qw = 0.0;
     qx = 0.0;
@@ -71,12 +73,25 @@ class BleChartStatus extends ChangeNotifier {
     return value;
   }
 
+  setTemp(List<int> a) {
+    temp = hexToInt(a[1].toRadixString(16).padLeft(2, '0') +
+            a[0].toRadixString(16).padLeft(2, '0')) /
+        100;
+    notifyListeners();
+  }
+
   setElectricity(int value) {
     electricity = value;
     notifyListeners();
   }
 
+  setBtn(int value) {
+    btn = value;
+    notifyListeners();
+  }
+
   set1601Data(List<int> a) {
+    showData = a.map((i) => i.toString()).join(",");
     int data1 = hexToInt(a[1].toRadixString(16).padLeft(2, '0') +
         a[0].toRadixString(16).padLeft(2, '0'));
     int data2 = hexToInt(a[3].toRadixString(16).padLeft(2, '0') +
@@ -89,25 +104,6 @@ class BleChartStatus extends ChangeNotifier {
         a[8].toRadixString(16).padLeft(2, '0'));
     int data6 = hexToInt(a[11].toRadixString(16).padLeft(2, '0') +
         a[10].toRadixString(16).padLeft(2, '0'));
-    // print(a);
-    // print(
-    //     "data1 ==${calculate1601(data1)}    1=${a[1]} ${a[1].toRadixString(16).padLeft(2, '0')}  0 =${a[0]} ${a[0].toRadixString(16).padLeft(2, '0')}   ");
-    // print(
-    //     "data2 ==${calculate1601(data2)}    1=${a[3]} ${a[3].toRadixString(16).padLeft(2, '0')}  0 =${a[2]} ${a[2].toRadixString(16).padLeft(2, '0')}   ");
-
-    // print(
-    //     "data3 ==${calculate1601(data3)}    1=${a[5]} ${a[5].toRadixString(16).padLeft(2, '0')}  0 =${a[4]} ${a[4].toRadixString(16).padLeft(2, '0')}   ");
-
-    // print(
-    //     "data4 ==${calculate1601(data4)}    1=${a[7]} ${a[7].toRadixString(16).padLeft(2, '0')}  0 =${a[6]} ${a[6].toRadixString(16).padLeft(2, '0')}   ");
-
-    // print(
-    //     "data5 ==${calculate1601(data5)}    1=${a[9]} ${a[9].toRadixString(16).padLeft(2, '0')}  0 =${a[8]} ${a[8].toRadixString(16).padLeft(2, '0')}   ");
-    // print(
-    //     "data5 ==${calculate1601(data6)}    1=${a[11]} ${a[11].toRadixString(16).padLeft(2, '0')}  0 =${a[10]} ${a[10].toRadixString(16).padLeft(2, '0')}   ");
-
-    // int data7 = a[12] + a[13];
-    // int data8 = a[14] + a[15];
     int size = 0;
     if (data[0].isNotEmpty) {
       size = data[0].length;
@@ -144,6 +140,10 @@ class BleChartStatus extends ChangeNotifier {
       data[4] = [FlSpot(0.toDouble(), calculate1601(data5).toDouble())];
       data[5] = [FlSpot(0.toDouble(), calculate1601(data6).toDouble())];
     }
+    // print(
+    //     "--------data1  ==${data1} ----data2  ==${data2} ----data3  ==${data3}  ----data4  ==${data4} ----data5  ==${data5}  ----data6  ==${data6}");
+    // print(
+    //     "--------data0  ==${data[0]} ----data1  ==${data[1]} ----data2  ==${data[2]}  ----data3  ==${data[3]} ----data4  ==${data[4]}  ----data5  ==${data[5]}");
     // print(" data size ====${data[0].length}  min  ==$minx  max==$maxx");
     index += 1;
 
@@ -151,6 +151,7 @@ class BleChartStatus extends ChangeNotifier {
   }
 
   set1602Data(List<int> a) {
+    showData = a.map((i) => i.toString()).join(",");
     int data1 = hexToInt(a[0].toRadixString(16).padLeft(2, '0') +
         a[1].toRadixString(16).padLeft(2, '0') +
         a[2].toRadixString(16).padLeft(2, '0') +
@@ -179,17 +180,17 @@ class BleChartStatus extends ChangeNotifier {
         a[11].toRadixString(16).padLeft(2, '0'));
     int data10 = hexToInt(a[10].toRadixString(16).padLeft(2, '0') +
         a[11].toRadixString(16).padLeft(2, '0'));
-    print(a);
-    print(
-        "data1 ==$data1    0 =${a[0]}  ${a[0].toRadixString(16).padLeft(2, '0')}  1=${a[1]} ${a[1].toRadixString(16).padLeft(2, '0')} ");
-    print(
-        "data2 ==$data2    0 =${a[2]}  ${a[2].toRadixString(16).padLeft(2, '0')}  1=${a[3]} ${a[3].toRadixString(16).padLeft(2, '0')} ");
-    print(
-        "data3 ==$data3    0 =${a[4]}  ${a[4].toRadixString(16).padLeft(2, '0')}  1=${a[5]} ${a[5].toRadixString(16).padLeft(2, '0')} ");
-    print(
-        "data4 ==$data4    0 =${a[6]}  ${a[6].toRadixString(16).padLeft(2, '0')}  1=${a[7]} ${a[7].toRadixString(16).padLeft(2, '0')} ");
-    print(
-        "data5 ==$data5    0 =${a[7]}  ${a[8].toRadixString(16).padLeft(2, '0')}  1=${a[9]} ${a[9].toRadixString(16).padLeft(2, '0')} ");
+    // print(a);
+    // print(
+    //     "data1 ==$data1    0 =${a[0]}  ${a[0].toRadixString(16).padLeft(2, '0')}  1=${a[1]} ${a[1].toRadixString(16).padLeft(2, '0')} ");
+    // print(
+    //     "data2 ==$data2    0 =${a[2]}  ${a[2].toRadixString(16).padLeft(2, '0')}  1=${a[3]} ${a[3].toRadixString(16).padLeft(2, '0')} ");
+    // print(
+    //     "data3 ==$data3    0 =${a[4]}  ${a[4].toRadixString(16).padLeft(2, '0')}  1=${a[5]} ${a[5].toRadixString(16).padLeft(2, '0')} ");
+    // print(
+    //     "data4 ==$data4    0 =${a[6]}  ${a[6].toRadixString(16).padLeft(2, '0')}  1=${a[7]} ${a[7].toRadixString(16).padLeft(2, '0')} ");
+    // print(
+    //     "data5 ==$data5    0 =${a[7]}  ${a[8].toRadixString(16).padLeft(2, '0')}  1=${a[9]} ${a[9].toRadixString(16).padLeft(2, '0')} ");
 
     // int data7 = a[12] + a[13];
     // int data8 = a[14] + a[15];
@@ -223,34 +224,35 @@ class BleChartStatus extends ChangeNotifier {
       data[4] = [FlSpot(0.toDouble(), data5.toDouble())];
       data[5] = [FlSpot(0.toDouble(), data6.toDouble())];
     }
-    print(" data size ====${data[0].length}  min  ==$minx  max==$maxx");
+    // print(" data size ====${data[0].length}  min  ==$minx  max==$maxx");
     index += 1;
 
     notifyListeners();
   }
 
   set1605Data(List<int> a) {
+    showData = a.map((i) => i.toString()).join(",");
     int data1 = hexToInt(a[1].toRadixString(16).padLeft(2, '0') +
         a[0].toRadixString(16).padLeft(2, '0'));
     int data2 = hexToInt(a[3].toRadixString(16).padLeft(2, '0') +
         a[2].toRadixString(16).padLeft(2, '0'));
     int data3 = hexToInt(a[5].toRadixString(16).padLeft(2, '0') +
         a[4].toRadixString(16).padLeft(2, '0'));
-    print(a);
-    print(
-        "data1 ==${calculate1601(data1)}    1=${a[1]} ${a[1].toRadixString(16).padLeft(2, '0')}  0 =${a[0]} ${a[0].toRadixString(16).padLeft(2, '0')}   ");
-    print(
-        "data2 ==${calculate1601(data2)}    1=${a[3]} ${a[3].toRadixString(16).padLeft(2, '0')}  0 =${a[2]} ${a[2].toRadixString(16).padLeft(2, '0')}   ");
+    // print(a);
+    // print(
+    //     "data1 ==${calculate1601(data1)}    1=${a[1]} ${a[1].toRadixString(16).padLeft(2, '0')}  0 =${a[0]} ${a[0].toRadixString(16).padLeft(2, '0')}   ");
+    // print(
+    //     "data2 ==${calculate1601(data2)}    1=${a[3]} ${a[3].toRadixString(16).padLeft(2, '0')}  0 =${a[2]} ${a[2].toRadixString(16).padLeft(2, '0')}   ");
 
-    print(
-        "data3 ==${calculate1601(data3)}    1=${a[5]} ${a[5].toRadixString(16).padLeft(2, '0')}  0 =${a[4]} ${a[4].toRadixString(16).padLeft(2, '0')}   ");
+    // print(
+    //     "data3 ==${calculate1601(data3)}    1=${a[5]} ${a[5].toRadixString(16).padLeft(2, '0')}  0 =${a[4]} ${a[4].toRadixString(16).padLeft(2, '0')}   ");
 
     // int data7 = a[12] + a[13];
     // int data8 = a[14] + a[15];
     int size = 0;
     if (data[0].isNotEmpty) {
       size = data[0].length;
-      print("size==========$size");
+      // print("size==========$size");
       if (size >= maxx) {
         minx += 1;
         maxx += 1;
@@ -271,7 +273,7 @@ class BleChartStatus extends ChangeNotifier {
       data[1] = [FlSpot(0.toDouble(), calculate1601(data2).toDouble())];
       data[2] = [FlSpot(0.toDouble(), calculate1601(data3).toDouble())];
     }
-    print(" data size ====${data[0].length}  min  ==$minx  max==$maxx");
+    // print(" data size ====${data[0].length}  min  ==$minx  max==$maxx");
     index += 1;
 
     notifyListeners();
