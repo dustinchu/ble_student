@@ -24,11 +24,17 @@ class _LineChart extends StatelessWidget {
   Widget build(BuildContext context) {
     BleChartStatus bleChartStatus = Provider.of<BleChartStatus>(context);
 
-    LineChartBarData getLineChartBarData(int index) {
+    LineChartBarData getLineChartBarData(int index, int len) {
       // print("---------chart--------${bleChartStatus.data[index]}");
       return LineChartBarData(
-        show: bleChartStatus.data[index] != null &&
-            bleChartStatus.data[index].isNotEmpty,
+        show: bleChartStatus.type == 1601
+            ? bleChartStatus.six[index] != null &&
+                bleChartStatus.six[index].isNotEmpty
+            : bleChartStatus.type == 1605
+                ? bleChartStatus.dmp[index] != null &&
+                    bleChartStatus.dmp[index].isNotEmpty
+                : bleChartStatus.acc[index] != null &&
+                    bleChartStatus.acc[index].isNotEmpty,
         isCurved: true,
         curveSmoothness: 0,
         color: chartColor[index],
@@ -36,9 +42,17 @@ class _LineChart extends StatelessWidget {
         isStrokeCapRound: true,
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
-        spots: bleChartStatus.data.isEmpty
-            ? [const FlSpot(0, 0)]
-            : bleChartStatus.data[index],
+        spots: bleChartStatus.type == 1601
+            ? bleChartStatus.six.isEmpty
+                ? [const FlSpot(0, 0)]
+                : bleChartStatus.six[index]
+            : bleChartStatus.type == 1605
+                ? bleChartStatus.dmp.isEmpty
+                    ? [const FlSpot(0, 0)]
+                    : bleChartStatus.dmp[index]
+                : bleChartStatus.acc.isEmpty
+                    ? [const FlSpot(0, 0)]
+                    : bleChartStatus.acc[index],
       );
     }
 
@@ -78,7 +92,7 @@ class _LineChart extends StatelessWidget {
     List<LineChartBarData> lineBarsData2() {
       List<LineChartBarData> d = [];
       for (var i = 0; i < bleChartStatus.lineCount; i++) {
-        d.add(getLineChartBarData(i));
+        d.add(getLineChartBarData(i, bleChartStatus.lineCount));
       }
       return d;
     }
@@ -88,7 +102,8 @@ class _LineChart extends StatelessWidget {
       gridData: gridData,
       titlesData: titlesData2,
       borderData: borderData,
-      lineBarsData: bleChartStatus.data.isEmpty ? null : lineBarsData2(),
+      // lineBarsData: bleChartStatus.data.isEmpty ? null : lineBarsData2(),
+      lineBarsData: lineBarsData2(),
       minX: bleChartStatus.minx.toDouble(),
       maxX: bleChartStatus.maxx.toDouble(),
       maxY: bleChartStatus.maxy.toDouble(),

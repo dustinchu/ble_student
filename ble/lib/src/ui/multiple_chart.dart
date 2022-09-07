@@ -248,7 +248,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1605 != null) {
         if (mounted) {
           Provider.of<HomeBleChartStatus>(context, listen: false)
-              .set1605Data(widget.device.id, event);
+              .set1605DmpData(widget.device.id, event);
         }
       }
     });
@@ -267,7 +267,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1606 != null) {
         if (mounted) {
           Provider.of<HomeBleChartStatus>(context, listen: false)
-              .set1605Data(widget.device.id, event);
+              .set1606accData(widget.device.id, event);
         }
       }
     });

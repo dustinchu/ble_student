@@ -28,4 +28,5 @@
 //     expect(find.text('1'), findsOneWidget);
 //   });
 // }
-// Unhandled Exception: PlatformException(reactive_ble_mobile.Central.(unknown context at $1017db650).Failure:1, The operation couldn’t be completed
+
+ 

@@ -345,7 +345,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1605 != null) {
         if (mounted) {
           Provider.of<BleChartStatus>(context, listen: false)
-              .set1605Data(event);
+              .set1605DmpData(event);
         }
       }
     });
@@ -364,7 +364,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1606 != null) {
         if (mounted) {
           Provider.of<BleChartStatus>(context, listen: false)
-              .set1605Data(event);
+              .set1606AccData(event);
         }
       }
     });
@@ -504,16 +504,16 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                   '1606': 'ACC'
                 },
                 notSelectedColor: Colors.transparent,
-                onChange: (selectedGender) {
+                onChange: (selectedGender) async {
                   switch (selectedGender) {
                     case "1601":
                       ff10Type = 00;
                       initSendFF10(serviceDiscoverer, ff10Type);
                       Provider.of<BleChartStatus>(context, listen: false)
                           .setType(1601);
-                      Provider.of<BleChartStatus>(context, listen: false)
+                      await Provider.of<BleChartStatus>(context, listen: false)
                           .cleanData();
-                      Provider.of<BleChartStatus>(context, listen: false)
+                      await Provider.of<BleChartStatus>(context, listen: false)
                           .setLineCount(
                               line_count: 6, max_y: 32767, min_y: -32768);
                       print("00");
@@ -537,9 +537,9 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       Provider.of<BleChartStatus>(context, listen: false)
                           .setType(1605);
                       initSendFF10(serviceDiscoverer, ff10Type);
-                      Provider.of<BleChartStatus>(context, listen: false)
+                      await Provider.of<BleChartStatus>(context, listen: false)
                           .cleanData();
-                      Provider.of<BleChartStatus>(context, listen: false)
+                      await Provider.of<BleChartStatus>(context, listen: false)
                           .setLineCount(
                               line_count: 3, max_y: 32767, min_y: -32768);
                       print("05");
@@ -549,9 +549,9 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       Provider.of<BleChartStatus>(context, listen: false)
                           .setType(1606);
                       initSendFF10(serviceDiscoverer, ff10Type);
-                      Provider.of<BleChartStatus>(context, listen: false)
+                      await Provider.of<BleChartStatus>(context, listen: false)
                           .cleanData();
-                      Provider.of<BleChartStatus>(context, listen: false)
+                      await Provider.of<BleChartStatus>(context, listen: false)
                           .setLineCount(
                               line_count: 3, max_y: 32767, min_y: -32768);
                       print("02");

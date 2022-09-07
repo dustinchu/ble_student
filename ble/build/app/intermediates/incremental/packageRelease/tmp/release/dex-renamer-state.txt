@@ -1,4 +1,4 @@
-#Wed Sep 07 15:37:55 CST 2022
+#Wed Sep 07 21:17:22 CST 2022
 base.0=/Users/user/Documents/fluttere_code/ble_student/ble/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

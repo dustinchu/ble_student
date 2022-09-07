@@ -9,7 +9,9 @@ class BleChartStatus extends ChangeNotifier {
   List<int> value = [];
   var bd = ByteData(4);
   int type = 1601;
-  List<List<FlSpot>> data = [[], [], [], [], [], [], [], [], [], []];
+  List<List<FlSpot>> six = [[], [], [], [], [], [], [], [], [], []];
+  List<List<FlSpot>> dmp = [[], [], [], [], [], [], [], [], [], []];
+  List<List<FlSpot>> acc = [[], [], [], [], [], [], [], [], [], []];
   String showData = "";
   int minx = 0;
   int maxx = 25;
@@ -50,20 +52,18 @@ class BleChartStatus extends ChangeNotifier {
     notifyListeners();
   }
 
-  cleanData() {
+  Future<void> cleanData() async {
     index = 0;
     minx = 0;
     maxx = 25;
-    data.clear();
-    data = [[], [], [], [], [], [], [], [], [], []];
+    // data.clear();
   }
 
-  setLineCount(
-      {required int line_count, required int min_y, required int max_y}) {
+  Future<void> setLineCount(
+      {required int line_count, required int min_y, required int max_y}) async {
     lineCount = line_count;
     miny = min_y;
     maxy = max_y;
-    // data = [[], [], [], [], [], [], [], [], [], []];
   }
 
   int calculate1601(int value) {
@@ -90,6 +90,20 @@ class BleChartStatus extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<FlSpot> list1601Move(int index, double d) {
+    List<FlSpot> f = [];
+    for (var i = 0; i < 24; i++) {
+      // print(
+      //     "value  index ==$index=====$i   ${data[index][i + 1].y}    len ==${data[index].length}");
+      double x = i.toDouble();
+      double y = six[index][i + 1].y;
+      f.add(FlSpot(x, y));
+    }
+    f.add(FlSpot(25, d));
+    // print("f====$f");
+    return f;
+  }
+
   set1601Data(List<int> a) {
     showData = a.map((i) => i.toString()).join(",");
     int data1 = hexToInt(a[1].toRadixString(16).padLeft(2, '0') +
@@ -104,133 +118,77 @@ class BleChartStatus extends ChangeNotifier {
         a[8].toRadixString(16).padLeft(2, '0'));
     int data6 = hexToInt(a[11].toRadixString(16).padLeft(2, '0') +
         a[10].toRadixString(16).padLeft(2, '0'));
+
     int size = 0;
-    if (data[0].isNotEmpty) {
-      size = data[0].length;
-      // print("size==========$size");
-      if (size >= maxx) {
-        minx += 1;
-        maxx += 1;
-        // print(" data 刪除前size ====${data[0].length}");
-        data[0].removeAt(0);
-        data[1].removeAt(0);
-        data[2].removeAt(0);
-        data[3].removeAt(0);
-        data[4].removeAt(0);
-        data[5].removeAt(0);
-        // print(" data 刪除後size ====${data[0].length}");
+    if (six[0].isNotEmpty) {
+      size = six[0].length;
+
+      // print(
+      //     "size==========$size   min ===$minx    maxx ==$maxx  data  ==${data[0]}");
+      if (size >= maxx && six[0].isNotEmpty) {
+        print("size====$size");
+        six[0] = list1601Move(0, calculate1601(data1).toDouble());
+        six[1] = list1601Move(1, calculate1601(data2).toDouble());
+        six[2] = list1601Move(2, calculate1601(data3).toDouble());
+        six[3] = list1601Move(3, calculate1601(data4).toDouble());
+        six[4] = list1601Move(4, calculate1601(data5).toDouble());
+        six[5] = list1601Move(5, calculate1601(data6).toDouble());
+      } else {
+        print(
+            "index ===$index   data 3==${six[4]}   ${six[4].isEmpty}   ||  $data4   len  ${six[4].length}   index ==$index   data==${calculate1601(data1).toDouble()}");
+        six[0].add(
+            FlSpot(six[0].length.toDouble(), calculate1601(data1).toDouble()));
+        six[1].add(
+            FlSpot(six[1].length.toDouble(), calculate1601(data2).toDouble()));
+        six[2].add(
+            FlSpot(six[2].length.toDouble(), calculate1601(data3).toDouble()));
+        six[3].add(
+            FlSpot(six[3].length.toDouble(), calculate1601(data4).toDouble()));
+        six[4].add(
+            FlSpot(six[4].length.toDouble(), calculate1601(data5).toDouble()));
+        six[5].add(
+            FlSpot(six[5].length.toDouble(), calculate1601(data6).toDouble()));
       }
-      data[0]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data1).toDouble()));
-      data[1]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data2).toDouble()));
-      data[2]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data3).toDouble()));
-      data[3]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data4).toDouble()));
-      data[4]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data5).toDouble()));
-      data[5]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data6).toDouble()));
     } else {
-      data[0] = [FlSpot(0.toDouble(), calculate1601(data1).toDouble())];
-      data[1] = [FlSpot(0.toDouble(), calculate1601(data2).toDouble())];
-      data[2] = [FlSpot(0.toDouble(), calculate1601(data3).toDouble())];
-      data[3] = [FlSpot(0.toDouble(), calculate1601(data4).toDouble())];
-      data[4] = [FlSpot(0.toDouble(), calculate1601(data5).toDouble())];
-      data[5] = [FlSpot(0.toDouble(), calculate1601(data6).toDouble())];
+      six[0] = [
+        FlSpot(six[0].length.toDouble(), calculate1601(data1).toDouble())
+      ];
+      six[1] = [
+        FlSpot(six[1].length.toDouble(), calculate1601(data2).toDouble())
+      ];
+      six[2] = [
+        FlSpot(six[2].length.toDouble(), calculate1601(data3).toDouble())
+      ];
+      six[3] = [
+        FlSpot(six[3].length.toDouble(), calculate1601(data4).toDouble())
+      ];
+      six[4] = [
+        FlSpot(six[4].length.toDouble(), calculate1601(data5).toDouble())
+      ];
+      six[5] = [
+        FlSpot(six[5].length.toDouble(), calculate1601(data6).toDouble())
+      ];
     }
-    // print(
-    //     "--------data1  ==${data1} ----data2  ==${data2} ----data3  ==${data3}  ----data4  ==${data4} ----data5  ==${data5}  ----data6  ==${data6}");
-    // print(
-    //     "--------data0  ==${data[0]} ----data1  ==${data[1]} ----data2  ==${data[2]}  ----data3  ==${data[3]} ----data4  ==${data[4]}  ----data5  ==${data[5]}");
-    // print(" data size ====${data[0].length}  min  ==$minx  max==$maxx");
     index += 1;
 
     notifyListeners();
   }
 
-  set1602Data(List<int> a) {
-    showData = a.map((i) => i.toString()).join(",");
-    int data1 = hexToInt(a[0].toRadixString(16).padLeft(2, '0') +
-        a[1].toRadixString(16).padLeft(2, '0') +
-        a[2].toRadixString(16).padLeft(2, '0') +
-        a[3].toRadixString(16).padLeft(2, '0'));
-    int data2 = hexToInt(a[4].toRadixString(16).padLeft(2, '0') +
-        a[5].toRadixString(16).padLeft(2, '0') +
-        a[6].toRadixString(16).padLeft(2, '0') +
-        a[7].toRadixString(16).padLeft(2, '0'));
-    int data3 = hexToInt(a[8].toRadixString(16).padLeft(2, '0') +
-        a[9].toRadixString(16).padLeft(2, '0') +
-        a[10].toRadixString(16).padLeft(2, '0') +
-        a[11].toRadixString(16).padLeft(2, '0'));
-    int data4 = hexToInt(a[6].toRadixString(12).padLeft(2, '0') +
-        a[13].toRadixString(16).padLeft(2, '0') +
-        a[14].toRadixString(16).padLeft(2, '0') +
-        a[15].toRadixString(16).padLeft(2, '0'));
-    int data5 = hexToInt(a[16].toRadixString(16).padLeft(2, '0') +
-        a[17].toRadixString(16).padLeft(2, '0'));
-    int data6 = hexToInt(a[10].toRadixString(16).padLeft(2, '0') +
-        a[11].toRadixString(16).padLeft(2, '0'));
-    int data7 = hexToInt(a[10].toRadixString(16).padLeft(2, '0') +
-        a[11].toRadixString(16).padLeft(2, '0'));
-    int data8 = hexToInt(a[10].toRadixString(16).padLeft(2, '0') +
-        a[11].toRadixString(16).padLeft(2, '0'));
-    int data9 = hexToInt(a[10].toRadixString(16).padLeft(2, '0') +
-        a[11].toRadixString(16).padLeft(2, '0'));
-    int data10 = hexToInt(a[10].toRadixString(16).padLeft(2, '0') +
-        a[11].toRadixString(16).padLeft(2, '0'));
-    // print(a);
-    // print(
-    //     "data1 ==$data1    0 =${a[0]}  ${a[0].toRadixString(16).padLeft(2, '0')}  1=${a[1]} ${a[1].toRadixString(16).padLeft(2, '0')} ");
-    // print(
-    //     "data2 ==$data2    0 =${a[2]}  ${a[2].toRadixString(16).padLeft(2, '0')}  1=${a[3]} ${a[3].toRadixString(16).padLeft(2, '0')} ");
-    // print(
-    //     "data3 ==$data3    0 =${a[4]}  ${a[4].toRadixString(16).padLeft(2, '0')}  1=${a[5]} ${a[5].toRadixString(16).padLeft(2, '0')} ");
-    // print(
-    //     "data4 ==$data4    0 =${a[6]}  ${a[6].toRadixString(16).padLeft(2, '0')}  1=${a[7]} ${a[7].toRadixString(16).padLeft(2, '0')} ");
-    // print(
-    //     "data5 ==$data5    0 =${a[7]}  ${a[8].toRadixString(16).padLeft(2, '0')}  1=${a[9]} ${a[9].toRadixString(16).padLeft(2, '0')} ");
-
-    // int data7 = a[12] + a[13];
-    // int data8 = a[14] + a[15];
-    int size = 0;
-    if (data[0].isNotEmpty) {
-      size = data[0].length;
-      print("size==========$size");
-      if (size >= maxx) {
-        minx += 1;
-        maxx += 1;
-        // print(" data 刪除前size ====${data[0].length}");
-        data[0].removeAt(0);
-        data[1].removeAt(0);
-        data[2].removeAt(0);
-        data[3].removeAt(0);
-        data[4].removeAt(0);
-        data[5].removeAt(0);
-        // print(" data 刪除後size ====${data[0].length}");
-      }
-      data[0].add(FlSpot(index + 1.toDouble(), data1.toDouble()));
-      data[1].add(FlSpot(index + 1.toDouble(), data2.toDouble()));
-      data[2].add(FlSpot(index + 1.toDouble(), data3.toDouble()));
-      data[3].add(FlSpot(index + 1.toDouble(), data4.toDouble()));
-      data[4].add(FlSpot(index + 1.toDouble(), data5.toDouble()));
-      data[5].add(FlSpot(index + 1.toDouble(), data6.toDouble()));
-    } else {
-      data[0] = [FlSpot(0.toDouble(), data1.toDouble())];
-      data[1] = [FlSpot(0.toDouble(), data2.toDouble())];
-      data[2] = [FlSpot(0.toDouble(), data3.toDouble())];
-      data[3] = [FlSpot(0.toDouble(), data4.toDouble())];
-      data[4] = [FlSpot(0.toDouble(), data5.toDouble())];
-      data[5] = [FlSpot(0.toDouble(), data6.toDouble())];
+  List<FlSpot> list1605Move(int index, double d, bool is1606) {
+    List<FlSpot> f = [];
+    for (var i = 0; i < 24; i++) {
+      // print(
+      //     "value  index ==$index=====$i   ${data[index][i + 1].y}    len ==${data[index].length}");
+      double x = i.toDouble();
+      double y = is1606 ? acc[index][i + 1].y : dmp[index][i + 1].y;
+      f.add(FlSpot(x, y));
     }
-    // print(" data size ====${data[0].length}  min  ==$minx  max==$maxx");
-    index += 1;
-
-    notifyListeners();
+    f.add(FlSpot(25, d));
+    // print("f====$f");
+    return f;
   }
 
-  set1605Data(List<int> a) {
+  set1605DmpData(List<int> a) {
     showData = a.map((i) => i.toString()).join(",");
     int data1 = hexToInt(a[1].toRadixString(16).padLeft(2, '0') +
         a[0].toRadixString(16).padLeft(2, '0'));
@@ -238,44 +196,69 @@ class BleChartStatus extends ChangeNotifier {
         a[2].toRadixString(16).padLeft(2, '0'));
     int data3 = hexToInt(a[5].toRadixString(16).padLeft(2, '0') +
         a[4].toRadixString(16).padLeft(2, '0'));
-    // print(a);
-    // print(
-    //     "data1 ==${calculate1601(data1)}    1=${a[1]} ${a[1].toRadixString(16).padLeft(2, '0')}  0 =${a[0]} ${a[0].toRadixString(16).padLeft(2, '0')}   ");
-    // print(
-    //     "data2 ==${calculate1601(data2)}    1=${a[3]} ${a[3].toRadixString(16).padLeft(2, '0')}  0 =${a[2]} ${a[2].toRadixString(16).padLeft(2, '0')}   ");
-
-    // print(
-    //     "data3 ==${calculate1601(data3)}    1=${a[5]} ${a[5].toRadixString(16).padLeft(2, '0')}  0 =${a[4]} ${a[4].toRadixString(16).padLeft(2, '0')}   ");
-
-    // int data7 = a[12] + a[13];
-    // int data8 = a[14] + a[15];
     int size = 0;
-    if (data[0].isNotEmpty) {
-      size = data[0].length;
+    if (dmp[0].isNotEmpty) {
+      size = dmp[0].length;
       // print("size==========$size");
-      if (size >= maxx) {
-        minx += 1;
-        maxx += 1;
-        // print(" data 刪除前size ====${data[0].length}");
-        data[0].removeAt(0);
-        data[1].removeAt(0);
-        data[2].removeAt(0);
-        // print(" data 刪除後size ====${data[0].length}");
-      }
-      data[0]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data1).toDouble()));
-      data[1]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data2).toDouble()));
-      data[2]
-          .add(FlSpot(index + 1.toDouble(), calculate1601(data3).toDouble()));
-    } else {
-      data[0] = [FlSpot(0.toDouble(), calculate1601(data1).toDouble())];
-      data[1] = [FlSpot(0.toDouble(), calculate1601(data2).toDouble())];
-      data[2] = [FlSpot(0.toDouble(), calculate1601(data3).toDouble())];
-    }
-    // print(" data size ====${data[0].length}  min  ==$minx  max==$maxx");
-    index += 1;
+      if (size >= maxx && dmp[0].isNotEmpty) {
+        dmp[0] = list1605Move(0, calculate1601(data1).toDouble(), false);
+        dmp[1] = list1605Move(1, calculate1601(data2).toDouble(), false);
+        dmp[2] = list1605Move(2, calculate1601(data3).toDouble(), false);
+      } else {
+        dmp[0].add(
+            FlSpot(dmp[0].length.toDouble(), calculate1601(data1).toDouble()));
 
+        dmp[1].add(
+            FlSpot(dmp[1].length.toDouble(), calculate1601(data1).toDouble()));
+        dmp[2].add(
+            FlSpot(dmp[2].length.toDouble(), calculate1601(data1).toDouble()));
+      }
+    } else {
+      dmp[0].add(
+          FlSpot(dmp[0].length.toDouble(), calculate1601(data1).toDouble()));
+
+      dmp[1].add(
+          FlSpot(dmp[1].length.toDouble(), calculate1601(data1).toDouble()));
+      dmp[2].add(
+          FlSpot(dmp[2].length.toDouble(), calculate1601(data1).toDouble()));
+    }
+    notifyListeners();
+  }
+
+  set1606AccData(List<int> a) {
+    showData = a.map((i) => i.toString()).join(",");
+    int data1 = hexToInt(a[1].toRadixString(16).padLeft(2, '0') +
+        a[0].toRadixString(16).padLeft(2, '0'));
+    int data2 = hexToInt(a[3].toRadixString(16).padLeft(2, '0') +
+        a[2].toRadixString(16).padLeft(2, '0'));
+    int data3 = hexToInt(a[5].toRadixString(16).padLeft(2, '0') +
+        a[4].toRadixString(16).padLeft(2, '0'));
+    int size = 0;
+    if (acc[0].isNotEmpty) {
+      size = acc[0].length;
+      print("size==========$size");
+      if (size >= maxx && acc[0].isNotEmpty) {
+        acc[0] = list1605Move(0, calculate1601(data1).toDouble(), true);
+        acc[1] = list1605Move(1, calculate1601(data2).toDouble(), true);
+        acc[2] = list1605Move(2, calculate1601(data3).toDouble(), true);
+      } else {
+        acc[0].add(
+            FlSpot(acc[0].length.toDouble(), calculate1601(data1).toDouble()));
+
+        acc[1].add(
+            FlSpot(acc[1].length.toDouble(), calculate1601(data1).toDouble()));
+        acc[2].add(
+            FlSpot(acc[2].length.toDouble(), calculate1601(data1).toDouble()));
+      }
+    } else {
+      acc[0].add(
+          FlSpot(acc[0].length.toDouble(), calculate1601(data1).toDouble()));
+
+      acc[1].add(
+          FlSpot(acc[1].length.toDouble(), calculate1601(data1).toDouble()));
+      acc[2].add(
+          FlSpot(acc[2].length.toDouble(), calculate1601(data1).toDouble()));
+    }
     notifyListeners();
   }
 }
