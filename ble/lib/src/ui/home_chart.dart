@@ -57,39 +57,6 @@ class _HomeLineChart extends StatelessWidget {
       );
     }
 
-    // print("data1======${bleChartStatus.data[1]}");
-    // LineChartBarData lineChartBarData2_1 = LineChartBarData(
-    //   isCurved: true,
-    //   curveSmoothness: 0,
-    //   color: chartColor[0],
-    //   barWidth: 1,
-    //   isStrokeCapRound: true,
-    //   dotData: FlDotData(show: false),
-    //   belowBarData: BarAreaData(show: false),
-    //   spots: bleChartStatus.data.isEmpty ? null : bleChartStatus.data[0],
-    // );
-
-    // LineChartBarData lineChartBarData2_2 = LineChartBarData(
-    //   isCurved: true,
-    //   curveSmoothness: 0,
-    //   color: chartColor[1],
-    //   barWidth: 1,
-    //   isStrokeCapRound: true,
-    //   dotData: FlDotData(show: false),
-    //   belowBarData: BarAreaData(show: false),
-    //   spots: bleChartStatus.data.isEmpty ? null : bleChartStatus.data[1],
-    // );
-
-    // LineChartBarData lineChartBarData2_3 = LineChartBarData(
-    //   isCurved: true,
-    //   curveSmoothness: 0,
-    //   color: chartColor[2],
-    //   barWidth: 1,
-    //   isStrokeCapRound: true,
-    //   dotData: FlDotData(show: false),
-    //   belowBarData: BarAreaData(show: false),
-    //   spots: bleChartStatus.data.isEmpty ? null : bleChartStatus.data[2],
-    // );
     List<LineChartBarData> lineBarsData2(int lineCount) {
       List<LineChartBarData> d = [];
 
