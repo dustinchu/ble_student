@@ -48,9 +48,9 @@ class BleChartStatus extends ChangeNotifier {
       case 1601:
         return "SIX";
       case 1606:
-        return "GYRO";
-      case 1605:
         return "ACC";
+      case 1605:
+        return "GYRO";
       case 1602:
         return "DMP_A";
       case 1604:

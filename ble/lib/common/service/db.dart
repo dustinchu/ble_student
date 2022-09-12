@@ -100,7 +100,7 @@ class DB {
     }
   }
 
-  Future insert1605(String name, String dt, int ax, int ay, int az) async {
+  Future insert1606(String name, String dt, int ax, int ay, int az) async {
     var db = await openDB();
     try {
       int recordId = await db.rawInsert(
@@ -113,7 +113,7 @@ class DB {
     }
   }
 
-  Future insert1606(String name, String dt, int qx, int qy, int qz) async {
+  Future insert1605(String name, String dt, int qx, int qy, int qz) async {
     var db = await openDB();
     try {
       int recordId = await db.rawInsert(

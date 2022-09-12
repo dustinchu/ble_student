@@ -17,7 +17,6 @@ import 'src/status/home_ble_chart_status.dart';
 import 'src/status/multiple_chart_status.dart';
 import 'src/ui/ble_status_screen.dart';
 
-// flutter: cr ====QualifiedCharacteristic(characteristicId: fff1, serviceId: ff00, deviceId: 507CF1E3-F50D-E794-E3CF-0CF6220A1BC7)
 const _themeColor = Colors.lightGreen;
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +28,7 @@ void main() {
     ble: _ble,
     logMessage: _bleLogger.addToLog,
   );
+
   final _serviceDiscoverer = BleDeviceInteractor(
     bleDiscoverServices: _ble.discoverServices,
     readCharacteristic: _ble.readCharacteristic,

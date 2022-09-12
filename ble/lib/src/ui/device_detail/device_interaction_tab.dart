@@ -515,8 +515,8 @@ class DeviceInteractionState extends State<DeviceInteraction> {
             child: CupertinoRadioChoice(
                 choices: const {
                   '1601': 'SIX',
-                  '1606': 'GYRO',
-                  '1605': 'ACC',
+                  '1606': 'ACC',
+                  '1605': 'GYRO',
                   '1602': 'DMP_A',
                   '1604': 'DMP_G',
                 },
