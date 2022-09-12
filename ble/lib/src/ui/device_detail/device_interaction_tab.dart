@@ -552,7 +552,8 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       Provider.of<BleChartStatus>(context, listen: false)
                           .setType(1604);
                       await Provider.of<BleChartStatus>(context, listen: false)
-                          .setLineCount(line_count: 3, max_y: 255, min_y: -256);
+                          .setLineCount(
+                              line_count: 3, max_y: 32767, min_y: -32768);
                       initSendFF10(serviceDiscoverer, ff10Type);
                       print("04");
                       break;

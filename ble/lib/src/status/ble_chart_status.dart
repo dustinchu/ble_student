@@ -337,7 +337,7 @@ class BleChartStatus extends ChangeNotifier {
   }
 
   set1602Data(List<int> value) {
-    print("1602===$value");
+    // print("1602===$value");
     qw = electricityDmp(value[0], value[1], value[2], value[3]);
     qx = electricityDmp(value[4], value[5], value[6], value[7]);
     qy = electricityDmp(value[8], value[9], value[10], value[11]);
@@ -345,20 +345,17 @@ class BleChartStatus extends ChangeNotifier {
     showData = "qw:$qw\nqx:$qx\nqy:$qy\nqz:$qz";
     int data1 = hexToInt(value[17].toRadixString(16).padLeft(2, '0') +
         value[16].toRadixString(16).padLeft(2, '0'));
-
     int data2 = hexToInt(value[19].toRadixString(16).padLeft(2, '0') +
         value[18].toRadixString(16).padLeft(2, '0'));
-
     int data3 = hexToInt(value[21].toRadixString(16).padLeft(2, '0') +
         value[20].toRadixString(16).padLeft(2, '0'));
-
-    int data4 = hexToInt(value[23].toRadixString(23).padLeft(2, '0') +
+    int data4 = hexToInt(value[23].toRadixString(16).padLeft(2, '0') +
         value[22].toRadixString(16).padLeft(2, '0'));
 
-    int data5 = hexToInt(value[25].toRadixString(23).padLeft(2, '0') +
+    int data5 = hexToInt(value[25].toRadixString(16).padLeft(2, '0') +
         value[24].toRadixString(16).padLeft(2, '0'));
 
-    int data6 = hexToInt(value[27].toRadixString(23).padLeft(2, '0') +
+    int data6 = hexToInt(value[27].toRadixString(16).padLeft(2, '0') +
         value[26].toRadixString(16).padLeft(2, '0'));
     if (dbTableName != "") {
       // Domain=FMDatabase Code=1 "near "10": syntax error" UserInfo={NSLocalizedDescription=near "10": syntax error
@@ -411,7 +408,7 @@ class BleChartStatus extends ChangeNotifier {
     qx = electricityDmp(value[4], value[5], value[6], value[7]);
     qy = electricityDmp(value[8], value[9], value[10], value[11]);
     qz = electricityDmp(value[12], value[13], value[14], value[15]);
-    showData = "qw:$qw\nqx:$qx\nqy:$qy\nqz:$qz";
+    // showData = "qw:$qw\nqx:$qx\nqy:$qy\nqz:$qz";
     int data1 = hexToInt(value[17].toRadixString(16).padLeft(2, '0') +
         value[16].toRadixString(16).padLeft(2, '0'));
 
@@ -420,6 +417,8 @@ class BleChartStatus extends ChangeNotifier {
 
     int data3 = hexToInt(value[21].toRadixString(16).padLeft(2, '0') +
         value[20].toRadixString(16).padLeft(2, '0'));
+    print(
+        "max ==$maxy  min ==$miny data1===$data1 data1===$data2 data1===$data3    calculate1601 =${calculate1601(data1)}  calculate1602 =${calculate1601(data2)}  calculate1603 =${calculate1601(data3)}");
     if (dbTableName != "") {
       // Domain=FMDatabase Code=1 "near "10": syntax error" UserInfo={NSLocalizedDescription=near "10": syntax error
       db.insert1604(dbTableName, dtStr(), qw, qx, qy, qz, data1, data2, data3);

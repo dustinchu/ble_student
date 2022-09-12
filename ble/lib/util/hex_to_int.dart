@@ -12,9 +12,10 @@ int hexToInt(String hex) {
       // a..f
       val += (hexDigit - 87) * (1 << (4 * (len - 1 - i)));
     } else {
-      throw new FormatException("Invalid hexadecimal value");
+      print("hex==$hex");
+      throw FormatException("Invalid hexadecimal value");
     }
   }
   return val;
 }
-// uint
+// Unhandled Exception: FormatException: Invalid hexadecimal value
