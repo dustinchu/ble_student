@@ -63,7 +63,7 @@ class BleChartStatus extends ChangeNotifier {
 
   String dtStr() {
     DateTime dt = DateTime.now();
-    return "${dt.year}-${dt.month}-${dt.day} ${dt.hour}:${dt.minute}:${dt.second}";
+    return "${dt.year}-${dt.month}-${dt.day} ${dt.hour}:${dt.minute}:${dt.second}:${dt.millisecond}";
   }
 
   insetFolder() async {
@@ -170,7 +170,14 @@ class BleChartStatus extends ChangeNotifier {
     if (dbTableName != "") {
       // Domain=FMDatabase Code=1 "near "10": syntax error" UserInfo={NSLocalizedDescription=near "10": syntax error
       db.insert1601(
-          dbTableName, dtStr(), data1, data2, data3, data4, data5, data6);
+          dbTableName,
+          dtStr(),
+          calculate1601(data1),
+          calculate1601(data2),
+          calculate1601(data3),
+          calculate1601(data4),
+          calculate1601(data5),
+          calculate1601(data6));
     }
 
     int size = 0;
@@ -265,7 +272,8 @@ class BleChartStatus extends ChangeNotifier {
         a[4].toRadixString(16).padLeft(2, '0'));
     if (dbTableName != "") {
       // Domain=FMDatabase Code=1 "near "10": syntax error" UserInfo={NSLocalizedDescription=near "10": syntax error
-      db.insert1605(dbTableName, dtStr(), data1, data2, data3);
+      db.insert1605(dbTableName, dtStr(), calculate1601(data1),
+          calculate1601(data2), calculate1601(data3));
     }
     int size = 0;
     if (acc[0].isNotEmpty) {
@@ -306,7 +314,8 @@ class BleChartStatus extends ChangeNotifier {
         a[4].toRadixString(16).padLeft(2, '0'));
     if (dbTableName != "") {
       // Domain=FMDatabase Code=1 "near "10": syntax error" UserInfo={NSLocalizedDescription=near "10": syntax error
-      db.insert1606(dbTableName, dtStr(), data1, data2, data3);
+      db.insert1606(dbTableName, dtStr(), calculate1601(data1),
+          calculate1601(data2), calculate1601(data3));
     }
     int size = 0;
     if (gyro[0].isNotEmpty) {
@@ -359,8 +368,20 @@ class BleChartStatus extends ChangeNotifier {
         value[26].toRadixString(16).padLeft(2, '0'));
     if (dbTableName != "") {
       // Domain=FMDatabase Code=1 "near "10": syntax error" UserInfo={NSLocalizedDescription=near "10": syntax error
-      db.insert1602(dbTableName, dtStr(), qw, qx, qy, qz, data1, data2, data3,
-          data4, data5, data6);
+      db.insert1602(
+        dbTableName,
+        dtStr(),
+        qw,
+        qx,
+        qy,
+        qz,
+        calculate1601(data1),
+        calculate1601(data2),
+        calculate1601(data3),
+        calculate1601(data4),
+        calculate1601(data5),
+        calculate1601(data6),
+      );
     }
     int size = 0;
     if (dmpa[0].isNotEmpty) {
@@ -417,11 +438,10 @@ class BleChartStatus extends ChangeNotifier {
 
     int data3 = hexToInt(value[21].toRadixString(16).padLeft(2, '0') +
         value[20].toRadixString(16).padLeft(2, '0'));
-    print(
-        "max ==$maxy  min ==$miny data1===$data1 data1===$data2 data1===$data3    calculate1601 =${calculate1601(data1)}  calculate1602 =${calculate1601(data2)}  calculate1603 =${calculate1601(data3)}");
     if (dbTableName != "") {
       // Domain=FMDatabase Code=1 "near "10": syntax error" UserInfo={NSLocalizedDescription=near "10": syntax error
-      db.insert1604(dbTableName, dtStr(), qw, qx, qy, qz, data1, data2, data3);
+      db.insert1604(dbTableName, dtStr(), qw, qx, qy, qz, calculate1601(data1),
+          calculate1601(data2), calculate1601(data3));
     }
     int size = 0;
     if (dmpg[0].isNotEmpty) {
