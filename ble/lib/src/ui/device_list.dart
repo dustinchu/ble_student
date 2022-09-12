@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:flutter_reactive_ble_example/src/ble/ble_device_connector.dart';
 import 'package:flutter_reactive_ble_example/src/ble/ble_device_interactor.dart';
 import 'package:flutter_reactive_ble_example/src/ble/ble_scanner.dart';
 import 'package:flutter_reactive_ble_example/src/status/connect.dart';
+import 'package:flutter_reactive_ble_example/util/user.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/service/db.dart';
@@ -183,84 +186,6 @@ class _DeviceListState extends State<_DeviceList> {
                             connectionStateUpdate: connectionStateUpdate,
                             device: device,
                           )
-                          // TextButton(
-                          //     child: ConnectStatus(
-                          //       bleConnector: deviceConnector,
-                          //       connectState:
-                          //           connectionStateUpdate.connectionState,
-                          //       connectionStateUpdate: connectionStateUpdate,
-
-                          //       deviceid: device.id,
-                          //     ),
-                          //     onPressed: () async {
-                          //       if (connect.msg[device.id] == null) {
-                          //         deviceConnector.connect(device.id);
-                          //         connect.setMsg(device.id, {});
-                          //       } else {
-                          //         if (connect.msg[device.id]["connectStatus"] =
-                          //             connectStateMsg(connectionStateUpdate
-                          //                     .connectionState) ==
-                          //                 "Disconnect") {
-                          //           deviceConnector.disconnect(device.id);
-                          //           connect.remove(device.id);
-                          //         }
-                          //       }
-                          //       // for (var i = 0; i < 100; i++) {
-                          //       //       if (connectionStateUpdate
-                          //       //               .connectionState ==
-                          //       //           DeviceConnectionState.connecting) {
-                          //       //         await Future.delayed(
-                          //       //             const Duration(seconds: 1));
-                          //       //         if (count == 10) {
-                          //       //           await deviceConnector
-                          //       //               .disconnect(device.id);
-                          //       //           await deviceConnector
-                          //       //               .connect(device.id);
-                          //       //         }
-                          //       //         ++count;
-                          //       //       } else {
-                          //       //         break;
-                          //       //       }
-                          //       //     }
-                          //       // if (connectionStateUpdate.deviceId ==
-                          //       //     device.id) {
-                          //       //   print(
-                          //       //       "device name ==$connectionStateUpdate    id====${device.id}");
-                          //       //   if (connectionStateUpdate.connectionState !=
-                          //       //       DeviceConnectionState.connecting) {
-                          //       //     if (connectionStateUpdate.connectionState ==
-                          //       //             DeviceConnectionState
-                          //       //                 .disconnected ||
-                          //       //         connectionStateUpdate.connectionState ==
-                          //       //             DeviceConnectionState
-                          //       //                 .disconnecting) {
-                          //       //       deviceConnector.connect(device.id);
-                          //       //       int count = 1;
-                          //       //       for (var i = 0; i < 100; i++) {
-                          //       //         if (connectionStateUpdate
-                          //       //                 .connectionState ==
-                          //       //             DeviceConnectionState.connecting) {
-                          //       //           await Future.delayed(
-                          //       //               const Duration(seconds: 1));
-                          //       //           if (count == 10) {
-                          //       //             await deviceConnector
-                          //       //                 .disconnect(device.id);
-                          //       //             await deviceConnector
-                          //       //                 .connect(device.id);
-                          //       //           }
-                          //       //           ++count;
-                          //       //         } else {
-                          //       //           break;
-                          //       //         }
-                          //       //       }
-                          //       //     }
-                          //       //   }
-                          //       // if (connectionStateUpdate.connectionState ==
-                          //       //     DeviceConnectionState.connected) {
-                          //       //   deviceConnector.disconnect(device.id);
-                          //       // }
-                          //       // }
-                          //     }),
                         ],
                       ),
                     ),
@@ -268,6 +193,11 @@ class _DeviceListState extends State<_DeviceList> {
                       // widget.stopScan();
                       if (connectionStateUpdate.connectionState ==
                           DeviceConnectionState.connected) {
+                        if (Platform.isAndroid) {
+                          User.instance.ble!
+                              .requestMtu(deviceId: device.id, mtu: 32);
+                        }
+
                         await Navigator.push<void>(
                             context,
                             MaterialPageRoute(

@@ -6,6 +6,7 @@ import 'package:flutter_reactive_ble_example/src/ble/ble_device_interactor.dart'
 import 'package:flutter_reactive_ble_example/src/ble/ble_scanner.dart';
 import 'package:flutter_reactive_ble_example/src/ble/ble_status_monitor.dart';
 import 'package:flutter_reactive_ble_example/src/ui/device_list.dart';
+import 'package:flutter_reactive_ble_example/util/user.dart';
 import 'package:provider/provider.dart';
 
 import 'src/ble/ble_logger.dart';
@@ -28,7 +29,7 @@ void main() {
     ble: _ble,
     logMessage: _bleLogger.addToLog,
   );
-
+  User.instance.ble = _ble;
   final _serviceDiscoverer = BleDeviceInteractor(
     bleDiscoverServices: _ble.discoverServices,
     readCharacteristic: _ble.readCharacteristic,
