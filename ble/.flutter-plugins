@@ -1,4 +1,12 @@
 # This is a generated file; do not edit or check into version control.
+external_path=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/external_path-1.0.1/
 flutter_reactive_ble=/Users/user/Documents/fluttere_code/ble_student/packages/flutter_reactive_ble/
+path_provider=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.11/
+path_provider_android=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.20/
+path_provider_ios=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_ios-2.0.11/
+path_provider_linux=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.7/
+path_provider_macos=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.6/
+path_provider_windows=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.7/
 permission_handler=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler-9.0.2/
 reactive_ble_mobile=/Users/user/Documents/fluttere_code/ble_student/packages/reactive_ble_mobile/
+sqflite=/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-2.0.2+1/

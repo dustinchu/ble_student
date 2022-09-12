@@ -320,7 +320,8 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       // if (!mounted) {
       if (sub1602 != null) {
         if (mounted) {
-          Provider.of<BleChartStatus>(context, listen: false).dmpData(event);
+          Provider.of<BleChartStatus>(context, listen: false)
+              .set1602Data(event);
         }
       }
     });
@@ -339,7 +340,8 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       // if (!mounted) {
       if (sub1604 != null) {
         if (mounted) {
-          Provider.of<BleChartStatus>(context, listen: false).dmpData(event);
+          Provider.of<BleChartStatus>(context, listen: false)
+              .set1604Data(event);
         }
       }
     });
@@ -359,7 +361,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1605 != null) {
         if (mounted) {
           Provider.of<BleChartStatus>(context, listen: false)
-              .set1605DmpData(event);
+              .set1605accData(event);
         }
       }
     });
@@ -378,7 +380,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1606 != null) {
         if (mounted) {
           Provider.of<BleChartStatus>(context, listen: false)
-              .set1606AccData(event);
+              .set1606gyroData(event);
         }
       }
     });
@@ -513,13 +515,15 @@ class DeviceInteractionState extends State<DeviceInteraction> {
             child: CupertinoRadioChoice(
                 choices: const {
                   '1601': 'SIX',
-                  '1602': 'ACC',
-                  '1604': 'GYRO',
-                  '1605': 'DMP',
-                  '1606': 'ACC'
+                  '1606': 'GYRO',
+                  '1605': 'ACC',
+                  '1602': 'DMP_A',
+                  '1604': 'DMP_G',
                 },
                 notSelectedColor: Colors.transparent,
                 onChange: (selectedGender) async {
+                  Provider.of<BleChartStatus>(context, listen: false)
+                      .saveStatus = false;
                   switch (selectedGender) {
                     case "1601":
                       ff10Type = 00;
@@ -537,6 +541,9 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       ff10Type = 03;
                       Provider.of<BleChartStatus>(context, listen: false)
                           .setType(1602);
+                      await Provider.of<BleChartStatus>(context, listen: false)
+                          .setLineCount(
+                              line_count: 6, max_y: 32767, min_y: -32768);
                       initSendFF10(serviceDiscoverer, ff10Type);
                       print("03");
                       break;
@@ -544,6 +551,8 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       ff10Type = 04;
                       Provider.of<BleChartStatus>(context, listen: false)
                           .setType(1604);
+                      await Provider.of<BleChartStatus>(context, listen: false)
+                          .setLineCount(line_count: 3, max_y: 255, min_y: -256);
                       initSendFF10(serviceDiscoverer, ff10Type);
                       print("04");
                       break;

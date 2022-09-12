@@ -7,6 +7,9 @@ class Connect extends ChangeNotifier {
   final flutterReactiveBle = FlutterReactiveBle();
   Map<String, DiscoveredDevice> mapDiscoveredDevice = {};
 
+//  int id2 = await txn.rawInsert(
+//       'INSERT INTO Test(name, value, num) VALUES(?, ?, ?)',
+//       ['another name', 12345678, 3.1416]);
   setMsg(DiscoveredDevice d, Map<String, dynamic> m) {
     msg[d.id] = m;
 

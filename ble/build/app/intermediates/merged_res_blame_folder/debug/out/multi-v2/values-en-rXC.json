@@ -4,13 +4,13 @@
             "outputFile": "/Users/user/Documents/fluttere_code/ble_student/ble/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "/Users/user/.gradle/caches/transforms-3/fc9a871ea5967930dc25d722dfd1a952/transformed/core-1.1.0/res/values-en-rXC/values-en-rXC.xml",
+                    "source": "/Users/user/.gradle/caches/transforms-3/348f6d52d990d4fb4fcc5abc17a1cdcd/transformed/core-1.6.0/res/values-en-rXC/values-en-rXC.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "202",
-                        "endOffsets": "253"
+                        "endColumns": "203",
+                        "endOffsets": "254"
                     }
                 }
             ]

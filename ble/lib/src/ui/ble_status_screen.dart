@@ -13,6 +13,7 @@ class _BleStatusScreenState extends State<BleStatusScreen> {
   @override
   void initState() {
     super.initState();
+
     requestPermissions();
   }
 

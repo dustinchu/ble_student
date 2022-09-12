@@ -208,7 +208,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1602 != null) {
         if (mounted) {
           Provider.of<HomeBleChartStatus>(context, listen: false)
-              .dmpData(widget.device.id, event);
+              .set1602dmpaData(widget.device.id, event);
         }
       }
     });
@@ -228,7 +228,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1604 != null) {
         if (mounted) {
           Provider.of<HomeBleChartStatus>(context, listen: false)
-              .dmpData(widget.device.id, event);
+              .set1604dmpgData(widget.device.id, event);
         }
       }
     });
@@ -267,7 +267,7 @@ class DeviceInteractionState extends State<DeviceInteraction> {
       if (sub1606 != null) {
         if (mounted) {
           Provider.of<HomeBleChartStatus>(context, listen: false)
-              .set1606accData(widget.device.id, event);
+              .set1606gyroData(widget.device.id, event);
         }
       }
     });
@@ -304,10 +304,10 @@ class DeviceInteractionState extends State<DeviceInteraction> {
             child: CupertinoRadioChoice(
                 choices: const {
                   '1601': 'SIX',
-                  '1602': 'ACC',
-                  '1604': 'GYRO',
-                  '1605': 'DMP',
-                  '1606': 'ACC'
+                  '1606': 'GYRO',
+                  '1605': 'ACC',
+                  '1602': 'DMP_A',
+                  '1604': 'DMP_G',
                 },
                 notSelectedColor: Colors.transparent,
                 onChange: (selectedGender) {
@@ -331,6 +331,12 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       ff10Type = 03;
                       Provider.of<HomeBleChartStatus>(context, listen: false)
                           .setType(widget.device.id, 1602);
+                      Provider.of<HomeBleChartStatus>(context, listen: false)
+                          .setLineCount(
+                              deviceId: widget.device.id,
+                              line_count: 6,
+                              max_y: 32767,
+                              min_y: -32768);
                       initSendFF10(serviceDiscoverer, ff10Type);
                       print("03");
                       break;
@@ -338,6 +344,12 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       ff10Type = 04;
                       Provider.of<HomeBleChartStatus>(context, listen: false)
                           .setType(widget.device.id, 1604);
+                      Provider.of<HomeBleChartStatus>(context, listen: false)
+                          .setLineCount(
+                              deviceId: widget.device.id,
+                              line_count: 3,
+                              max_y: 32767,
+                              min_y: -32768);
                       initSendFF10(serviceDiscoverer, ff10Type);
                       print("04");
                       break;
@@ -346,8 +358,8 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       Provider.of<HomeBleChartStatus>(context, listen: false)
                           .setType(widget.device.id, 1605);
                       initSendFF10(serviceDiscoverer, ff10Type);
-                      Provider.of<HomeBleChartStatus>(context, listen: false)
-                          .cleanData(widget.device.id);
+                      // Provider.of<HomeBleChartStatus>(context, listen: false)
+                      //     .cleanData(widget.device.id);
                       Provider.of<HomeBleChartStatus>(context, listen: false)
                           .setLineCount(
                               deviceId: widget.device.id,
@@ -361,8 +373,8 @@ class DeviceInteractionState extends State<DeviceInteraction> {
                       Provider.of<HomeBleChartStatus>(context, listen: false)
                           .setType(widget.device.id, 1606);
                       initSendFF10(serviceDiscoverer, ff10Type);
-                      Provider.of<HomeBleChartStatus>(context, listen: false)
-                          .cleanData(widget.device.id);
+                      // Provider.of<HomeBleChartStatus>(context, listen: false)
+                      //     .cleanData(widget.device.id);
                       Provider.of<HomeBleChartStatus>(context, listen: false)
                           .setLineCount(
                               deviceId: widget.device.id,

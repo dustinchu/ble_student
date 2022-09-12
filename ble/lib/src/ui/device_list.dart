@@ -6,9 +6,11 @@ import 'package:flutter_reactive_ble_example/src/ble/ble_scanner.dart';
 import 'package:flutter_reactive_ble_example/src/status/connect.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/service/db.dart';
 import '../widgets.dart';
 import 'connect_status.dart';
 import 'device_detail/device_detail_screen.dart';
+import 'folder_screen.dart';
 import 'multiple_chart_screen.dart';
 import 'wifi_icon.dart';
 
@@ -47,7 +49,13 @@ class _DeviceListState extends State<_DeviceList> {
   @override
   void initState() {
     super.initState();
+    copyDb();
     widget.startScan();
+  }
+
+  copyDb() async {
+    DB db = DB();
+    await db.copy();
   }
 
   @override
@@ -75,6 +83,13 @@ class _DeviceListState extends State<_DeviceList> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    IconButton(
+                      onPressed: () async {
+                        Navigator.push<void>(context,
+                            MaterialPageRoute(builder: (_) => FolderScreen()));
+                      },
+                      icon: Icon(Icons.folder),
+                    ),
                     IconButton(
                       onPressed: () {
                         print(connect.msg.values.length);

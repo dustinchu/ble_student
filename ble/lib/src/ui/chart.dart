@@ -31,10 +31,16 @@ class _LineChart extends StatelessWidget {
             ? bleChartStatus.six[index] != null &&
                 bleChartStatus.six[index].isNotEmpty
             : bleChartStatus.type == 1605
-                ? bleChartStatus.dmp[index] != null &&
-                    bleChartStatus.dmp[index].isNotEmpty
-                : bleChartStatus.acc[index] != null &&
-                    bleChartStatus.acc[index].isNotEmpty,
+                ? bleChartStatus.acc[index] != null &&
+                    bleChartStatus.acc[index].isNotEmpty
+                : bleChartStatus.type == 1606
+                    ? bleChartStatus.gyro[index] != null &&
+                        bleChartStatus.gyro[index].isNotEmpty
+                    : bleChartStatus.type == 1602
+                        ? bleChartStatus.dmpa[index] != null &&
+                            bleChartStatus.dmpa[index].isNotEmpty
+                        : bleChartStatus.dmpg[index] != null &&
+                            bleChartStatus.dmpg[index].isNotEmpty,
         isCurved: true,
         curveSmoothness: 0,
         color: chartColor[index],
@@ -47,48 +53,23 @@ class _LineChart extends StatelessWidget {
                 ? [const FlSpot(0, 0)]
                 : bleChartStatus.six[index]
             : bleChartStatus.type == 1605
-                ? bleChartStatus.dmp.isEmpty
+                ? bleChartStatus.acc.isEmpty
                     ? [const FlSpot(0, 0)]
-                    : bleChartStatus.dmp[index]
-                : bleChartStatus.acc.isEmpty
-                    ? [const FlSpot(0, 0)]
-                    : bleChartStatus.acc[index],
+                    : bleChartStatus.acc[index]
+                : bleChartStatus.type == 1606
+                    ? bleChartStatus.gyro.isEmpty
+                        ? [const FlSpot(0, 0)]
+                        : bleChartStatus.gyro[index]
+                    : bleChartStatus.type == 1602
+                        ? bleChartStatus.dmpa.isEmpty
+                            ? [const FlSpot(0, 0)]
+                            : bleChartStatus.dmpa[index]
+                        : bleChartStatus.dmpg.isEmpty
+                            ? [const FlSpot(0, 0)]
+                            : bleChartStatus.dmpg[index],
       );
     }
 
-    // print("data1======${bleChartStatus.data[1]}");
-    // LineChartBarData lineChartBarData2_1 = LineChartBarData(
-    //   isCurved: true,
-    //   curveSmoothness: 0,
-    //   color: chartColor[0],
-    //   barWidth: 1,
-    //   isStrokeCapRound: true,
-    //   dotData: FlDotData(show: false),
-    //   belowBarData: BarAreaData(show: false),
-    //   spots: bleChartStatus.data.isEmpty ? null : bleChartStatus.data[0],
-    // );
-
-    // LineChartBarData lineChartBarData2_2 = LineChartBarData(
-    //   isCurved: true,
-    //   curveSmoothness: 0,
-    //   color: chartColor[1],
-    //   barWidth: 1,
-    //   isStrokeCapRound: true,
-    //   dotData: FlDotData(show: false),
-    //   belowBarData: BarAreaData(show: false),
-    //   spots: bleChartStatus.data.isEmpty ? null : bleChartStatus.data[1],
-    // );
-
-    // LineChartBarData lineChartBarData2_3 = LineChartBarData(
-    //   isCurved: true,
-    //   curveSmoothness: 0,
-    //   color: chartColor[2],
-    //   barWidth: 1,
-    //   isStrokeCapRound: true,
-    //   dotData: FlDotData(show: false),
-    //   belowBarData: BarAreaData(show: false),
-    //   spots: bleChartStatus.data.isEmpty ? null : bleChartStatus.data[2],
-    // );
     List<LineChartBarData> lineBarsData2() {
       List<LineChartBarData> d = [];
       for (var i = 0; i < bleChartStatus.lineCount; i++) {
@@ -121,85 +102,13 @@ class _LineChart extends StatelessWidget {
       );
 
   FlTitlesData get titlesData2 => FlTitlesData(
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
+        show: false,
       );
-
-  // Widget leftTitleWidgets(double value, TitleMeta meta) {
-  //   const style = TextStyle(
-  //     color: Colors.white30,
-  //     fontWeight: FontWeight.bold,
-  //     fontSize: 14,
-  //   );
-  //   String text;
-  //   switch (value.toInt()) {
-  //     case 0:
-  //       text = '0';
-  //       break;
-  //     case 50:
-  //       text = '50';
-  //       break;
-  //     case 100:
-  //       text = '100';
-  //       break;
-  //     case 150:
-  //       text = '150';
-  //       break;
-  //     case 200:
-  //       text = '200';
-  //       break;
-  //     case 250:
-  //       text = '250';
-  //       break;
-  //     case 300:
-  //       text = '300';
-  //       break;
-  //     case 350:
-  //       text = '350';
-  //       break;
-  //     case 400:
-  //       text = '400';
-  //       break;
-  //     case 450:
-  //       text = '450';
-  //       break;
-  //     case 500:
-  //       text = '500';
-  //       break;
-  //     default:
-  //       return Container();
-  //   }
-
-  //   return Text(text, style: style, textAlign: TextAlign.center);
-  // }
-
-  // SideTitles leftTitles() => SideTitles(
-  //       getTitlesWidget: leftTitleWidgets,
-  //       showTitles: true,
-  //       interval: 1,
-  //       reservedSize: 40,
-  //     );
 
   FlGridData get gridData => FlGridData(show: false);
 
   FlBorderData get borderData => FlBorderData(
-        show: true,
-        border: const Border(
-          bottom: BorderSide(color: Colors.white30, width: 1),
-          left: BorderSide(color: Colors.transparent),
-          right: BorderSide(color: Colors.transparent),
-          top: BorderSide(color: Colors.transparent),
-        ),
+        show: false,
       );
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
@@ -280,67 +189,42 @@ class LineChartSample1State extends State<LineChartSample1> {
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor.withOpacity(0.5),
             borderRadius: BorderRadius.all(Radius.circular(18)),
-            //   gradient: LinearGradient(
-            //     colors: [
-            //  Theme.of(context).
-            //       Color(0xFF05040F),
-            //       Color(0xFF0A0725),
-            //     ],
-            //     begin: Alignment.bottomCenter,
-            //     end: Alignment.topCenter,
-            //   ),
           ),
           child: Stack(
             children: <Widget>[
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  const SizedBox(
+                  SizedBox(
                     height: 30,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                bleChartStatus.changeSavaStatus();
+                              },
+                              icon: Icon(
+                                Icons.save_alt_outlined,
+                                color: bleChartStatus.saveStatus
+                                    ? Colors.white
+                                    : Colors.white38,
+                              )),
+                          SizedBox(
+                            width: 10,
+                          )
+                        ]),
                   ),
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(right: 16.0, left: 6.0),
-                      child: (bleChartStatus.type == 1602 ||
-                              bleChartStatus.type == 1604)
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("qw: ${bleChartStatus.qw}"),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text("qx: ${bleChartStatus.qx}"),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text("qy: ${bleChartStatus.qy}"),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text("qz: ${bleChartStatus.qz}"),
-                                  ],
-                                ),
-                              ],
-                            )
-                          : _LineChart(isShowingMainData: false),
+                      child: _LineChart(isShowingMainData: false),
                     ),
                   ),
                   SizedBox(
-                    height: bleChartStatus.type == 1602 ||
-                            bleChartStatus.type == 1604
-                        ? 30
-                        : 100,
+                    height: 100,
                     child: Center(
-                      child: Text((bleChartStatus.type == 1602 ||
-                              bleChartStatus.type == 1604)
-                          ? ""
-                          : bleChartStatus.showData),
+                      child: Text(bleChartStatus.showData),
                     ),
                   ),
                 ],

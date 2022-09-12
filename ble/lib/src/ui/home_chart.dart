@@ -32,10 +32,16 @@ class _HomeLineChart extends StatelessWidget {
             ? bleChartStatus.six[deviceId]![index] != null &&
                 bleChartStatus.six[deviceId]![index].isNotEmpty
             : bleChartStatus.type[deviceId] == 1605
-                ? bleChartStatus.dmp[deviceId]![index] != null &&
-                    bleChartStatus.dmp[deviceId]![index].isNotEmpty
-                : bleChartStatus.acc[deviceId]![index] != null &&
-                    bleChartStatus.acc[deviceId]![index].isNotEmpty,
+                ? bleChartStatus.acc[deviceId]![index] != null &&
+                    bleChartStatus.acc[deviceId]![index].isNotEmpty
+                : bleChartStatus.type[deviceId] == 1606
+                    ? bleChartStatus.gyro[deviceId]![index] != null &&
+                        bleChartStatus.gyro[deviceId]![index].isNotEmpty
+                    : bleChartStatus.type[deviceId] == 1602
+                        ? bleChartStatus.dmpa[deviceId]![index] != null &&
+                            bleChartStatus.dmpa[deviceId]![index].isNotEmpty
+                        : bleChartStatus.dmpg[deviceId]![index] != null &&
+                            bleChartStatus.dmpg[deviceId]![index].isNotEmpty,
         isCurved: true,
         curveSmoothness: 0,
         color: chartColor[index],
@@ -43,17 +49,36 @@ class _HomeLineChart extends StatelessWidget {
         isStrokeCapRound: true,
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
+        // spots: bleChartStatus.type[deviceId] == 1601
+        //     ? bleChartStatus.six[deviceId] == null
+        //         ? [const FlSpot(0, 0)]
+        //         : bleChartStatus.six[deviceId]![index]
+        //     : bleChartStatus.type[deviceId] == 1605
+        //         ? bleChartStatus.dmp[deviceId] == null
+        //             ? [const FlSpot(0, 0)]
+        //             : bleChartStatus.dmp[deviceId]![index]
+        //         : bleChartStatus.gyro[deviceId] == null
+        //             ? [const FlSpot(0, 0)]
+        //             : bleChartStatus.gyro[deviceId]![index],
         spots: bleChartStatus.type[deviceId] == 1601
-            ? bleChartStatus.six[deviceId] == null
+            ? bleChartStatus.six[deviceId]!.isEmpty
                 ? [const FlSpot(0, 0)]
                 : bleChartStatus.six[deviceId]![index]
             : bleChartStatus.type[deviceId] == 1605
-                ? bleChartStatus.dmp[deviceId] == null
+                ? bleChartStatus.acc[deviceId]!.isEmpty
                     ? [const FlSpot(0, 0)]
-                    : bleChartStatus.dmp[deviceId]![index]
-                : bleChartStatus.acc[deviceId] == null
-                    ? [const FlSpot(0, 0)]
-                    : bleChartStatus.acc[deviceId]![index],
+                    : bleChartStatus.acc[deviceId]![index]
+                : bleChartStatus.type[deviceId] == 1606
+                    ? bleChartStatus.gyro.isEmpty
+                        ? [const FlSpot(0, 0)]
+                        : bleChartStatus.gyro[deviceId]![index]
+                    : bleChartStatus.type[deviceId] == 1602
+                        ? bleChartStatus.dmpa[deviceId]!.isEmpty
+                            ? [const FlSpot(0, 0)]
+                            : bleChartStatus.dmpa[deviceId]![index]
+                        : bleChartStatus.dmpg[deviceId]!.isEmpty
+                            ? [const FlSpot(0, 0)]
+                            : bleChartStatus.dmpg[deviceId]![index],
       );
     }
 
@@ -76,12 +101,20 @@ class _HomeLineChart extends StatelessWidget {
               ? null
               : lineBarsData2(6)
           : bleChartStatus.type[deviceId] == 1605
-              ? bleChartStatus.dmp.isEmpty
+              ? bleChartStatus.acc.isEmpty
                   ? null
                   : lineBarsData2(3)
-              : bleChartStatus.acc.isEmpty
-                  ? null
-                  : lineBarsData2(3),
+              : bleChartStatus.type[deviceId] == 1606
+                  ? bleChartStatus.gyro.isEmpty
+                      ? null
+                      : lineBarsData2(3)
+                  : bleChartStatus.type[deviceId] == 1602
+                      ? bleChartStatus.dmpa.isEmpty
+                          ? null
+                          : lineBarsData2(6)
+                      : bleChartStatus.dmpg.isEmpty
+                          ? null
+                          : lineBarsData2(3),
       minX: bleChartStatus.minx[deviceId]!.toDouble(),
       maxX: bleChartStatus.maxx[deviceId]!.toDouble(),
       maxY: bleChartStatus.maxy[deviceId]!.toDouble(),
@@ -100,18 +133,7 @@ class _HomeLineChart extends StatelessWidget {
       );
 
   FlTitlesData get titlesData2 => FlTitlesData(
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
+        show: false,
       );
 
   // Widget leftTitleWidgets(double value, TitleMeta meta) {
@@ -172,13 +194,7 @@ class _HomeLineChart extends StatelessWidget {
   FlGridData get gridData => FlGridData(show: false);
 
   FlBorderData get borderData => FlBorderData(
-        show: true,
-        border: const Border(
-          bottom: BorderSide(color: Colors.white30, width: 1),
-          left: BorderSide(color: Colors.transparent),
-          right: BorderSide(color: Colors.transparent),
-          top: BorderSide(color: Colors.transparent),
-        ),
+        show: false,
       );
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(

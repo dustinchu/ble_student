@@ -1,10 +1,10 @@
 name: flutter_reactive_ble_example
 description: Demonstrates how to use the flutter_reactive_ble plugin.
 version: 5.0.2
-publish_to: 'none'
+publish_to: "none"
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.10.0"
 
 dependencies:
@@ -19,6 +19,10 @@ dependencies:
   cupertino_radio_choice: ^1.0.2
   fl_chart: ^0.55.1
   permission_handler: ^9.0.2
+  csv: ^5.0.1
+  sqflite: ^2.0.2
+  path_provider: ^2.0.11
+  external_path: any
 dev_dependencies:
   build_runner: ^2.1.4
   dependency_validator: ^3.1.0
@@ -35,4 +39,7 @@ dependency_overrides:
     path: ../packages/reactive_ble_platform_interface
 
 flutter:
+  generate: true
   uses-material-design: true
+  assets:
+    - assets/data/
