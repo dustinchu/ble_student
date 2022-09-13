@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../../common/dialog.dart';
 import '../../common/service/db.dart';
@@ -132,34 +133,67 @@ class _FolderDetailScreenState extends State<FolderDetailScreen> {
     }
   }
 
+  String outPutStr(Map<String, dynamic> data) {
+    switch (widget.title) {
+      case "SIX":
+        return "name:SIX ax:${data["qx"]} ay:${data["qy"]} az:${data["qz"]} ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]}";
+      case "GYRO":
+        return "name:GYRO ax:${data["qx"]} ay:${data["qy"]} az:${data["qz"]}";
+      case "DMP_G":
+        return "name:DMP_G qw:${data["qw"]} qx:${data["qx"]} qy:${data["qy"]} qz:${data["qz"]} gx:${data["gx"]} gy:${data["gy"]}  gz:${data["gz"]}";
+
+      case "DMP_A":
+        return "name:DMP_A qw:${data["qw"]} qx:${data["qx"]} qy:${data["qy"]} qz:${data["qz"]} ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]} gx:${data["gx"]} gy:${data["gy"]}  gz:${data["gz"]}";
+
+      case "ACC":
+        return "name:ACC ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]}";
+    }
+    return "";
+  }
+
   String dtStr() {
     DateTime dt = DateTime.now();
     return "${dt.month}${dt.day}${dt.hour}${dt.minute}${dt.second}";
   }
 
 //  Unhandled Exception: FileSystemException: Cannot open file, path =
-  save() async {
+  // save() async {
+  //   await getCsvData();
+  //   if (await Permission.storage.request().isGranted) {
+  //     Directory generalDownloadDir = Directory('/storage/emulated/0/Download');
+  //     File f =
+  //         File(generalDownloadDir.path + "/${widget.title}-${dtStr()}.csv");
+  //     String csv = const ListToCsvConverter().convert(employeeData);
+  //     f.writeAsString(csv);
+  //     showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return msgDialog(context, "成功", "CSV寫入成功");
+  //         });
+  //   } else {
+  //     Map<Permission, PermissionStatus> statuses = await [
+  //       Permission.storage,
+  //     ].request();
+  //     showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return msgDialog(context, "錯誤", "沒有寫入權限");
+  //         });
+  //   }
+  // }
+
+  void onShare(BuildContext context) async {
     await getCsvData();
-    if (await Permission.storage.request().isGranted) {
-      Directory generalDownloadDir = Directory('/storage/emulated/0/Download');
-      File f =
-          File(generalDownloadDir.path + "/${widget.title}-${dtStr()}.csv");
-      String csv = const ListToCsvConverter().convert(employeeData);
-      f.writeAsString(csv);
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return msgDialog(context, "成功", "CSV寫入成功");
-          });
-    } else {
-      Map<Permission, PermissionStatus> statuses = await [
-        Permission.storage,
-      ].request();
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return msgDialog(context, "錯誤", "沒有寫入權限");
-          });
+    var databasesPath = await getDatabasesPath();
+    var path = databasesPath + "/${widget.title}-${dtStr()}.csv";
+    File f = File(path);
+    String csv = const ListToCsvConverter().convert(employeeData);
+    f.writeAsString(csv);
+    final box = context.findRenderObject() as RenderBox?;
+
+    if (true) {
+      await Share.shareFiles([path],
+          sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
     }
   }
 
@@ -170,24 +204,32 @@ class _FolderDetailScreenState extends State<FolderDetailScreen> {
         title: Text("${widget.title} Detail"),
         centerTitle: true,
         actions: [
-          Platform.isAndroid
-              ? IconButton(
-                  icon: Icon(
-                    Icons.download,
-                    color: data.length > 0 ? Colors.white : Colors.white54,
-                  ),
-                  onPressed: () async {
-                    if (data.length > 0) {
-                      await save();
-                    }
-                  },
-                )
-              : Container(),
+          // Platform.isAndroid
+          //     ? IconButton(
+          //         icon: Icon(
+          //           Icons.download,
+          //           color: data.length > 0 ? Colors.white : Colors.white54,
+          //         ),
+          //         onPressed: () async {
+          //           if (data.length > 0) {
+          //             await save();
+          //           }
+          //         },
+          //       )
+          //     : Container(),
+          IconButton(
+            icon: const Icon(
+              Icons.share,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              if (data.length > 0) {
+                onShare(context);
+              }
+            },
+          ),
           IconButton(
               onPressed: () async {
-                // SIX-2022-9-12 13:12:13
-                //             SIX-2022-9-12 13:12:13
-
                 await db.delete(widget.title, widget.title + "-" + widget.dt);
                 showDialog(
                     context: context,
@@ -201,10 +243,24 @@ class _FolderDetailScreenState extends State<FolderDetailScreen> {
       body: ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
+          // String d = data[index].toString();
+          // int e = data[index].toString().indexOf("-");
+          // int s = data[index].toString().indexOf(":");
+          // String title = "";
+
+          // if (e != -1) {
+          //   title = d.substring(s, e);
+          // } else {
+          //   title = data[index]["name"].toString();
+          // }
+          // print(title);
+          // print(data[index]["name"]);
+          // data[index]["name"] = title;
+          //  print(data[index]["name"]);
           return Column(
             children: <Widget>[
               ListTile(
-                title: Text(data[index].toString()),
+                title: Text(outPutStr(data[index])),
               ),
               Divider(), //                           <-- Divider
             ],

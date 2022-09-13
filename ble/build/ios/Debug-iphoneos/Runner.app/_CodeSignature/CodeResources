@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		H/ZEGVFGEzcIu8XZa+4xtHeUvHs=
+		tOMB568m/0Ers0m99WTVm9NLVLs=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		4Yr+H+dPKUHnEAodOdtlTzpWXkY=
+		9YWCp0+S/MgazxAleImyd9v+0mM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		nTgkRYvVnJxFc6umalKVrw2Mlv8=
+		lsLEZSIoNCut3SeHiVD36TPakoU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/data/mydatabase.db</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		OYdGnhAe2ttFFeyMSj3Vuu4pMnQ=
+		9ygKny0o0jAw7eAeYxcotl0bAtE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/vm_snapshot_data</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Frameworks/FMDB.framework/FMDB</key>
 		<data>
-		Cyfr2EAiy2ZWR4Gcbklwx9odk8k=
+		EpPlOl/A+YUyZoQfQUUG9VMin8M=
 		</data>
 		<key>Frameworks/FMDB.framework/Info.plist</key>
 		<data>
@@ -102,7 +102,7 @@
 		</data>
 		<key>Frameworks/Flutter.framework/Flutter</key>
 		<data>
-		E5BqiKCOQY6/rQnrx6kPKHdM1Ug=
+		KSioS+pjXLgiUQ6RynSXFgvPECU=
 		</data>
 		<key>Frameworks/Flutter.framework/Headers/Flutter.h</key>
 		<data>
@@ -190,7 +190,7 @@
 		</data>
 		<key>Frameworks/Protobuf.framework/Protobuf</key>
 		<data>
-		FOcUwIDINZVrzGAWdtRyucLH9NE=
+		PK9+6tCzSUzDdbYejWvK/j18Fzc=
 		</data>
 		<key>Frameworks/Protobuf.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -202,7 +202,7 @@
 		</data>
 		<key>Frameworks/SwiftProtobuf.framework/SwiftProtobuf</key>
 		<data>
-		6+8cTQyBVfzn/t+5gSyNWiM1P7A=
+		Jx1mZ40j634+RvxMVbHQrOOnUxg=
 		</data>
 		<key>Frameworks/SwiftProtobuf.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -274,7 +274,7 @@
 		</data>
 		<key>Frameworks/path_provider_ios.framework/path_provider_ios</key>
 		<data>
-		3faC9JWoax/9oenpJARAWBUMnak=
+		W3UQI4hFCjfEDLClHB0/VQbGN7E=
 		</data>
 		<key>Frameworks/reactive_ble_mobile.framework/Info.plist</key>
 		<data>
@@ -286,7 +286,19 @@
 		</data>
 		<key>Frameworks/reactive_ble_mobile.framework/reactive_ble_mobile</key>
 		<data>
-		1rcEJxK9R0ZlA3f4f9Gfe5RDtDQ=
+		Mee4cqRIxxmQrBwNvECqszzmyAA=
+		</data>
+		<key>Frameworks/share_plus.framework/Info.plist</key>
+		<data>
+		aJNn6eL3W/ll9b0wm05zvbUjn+4=
+		</data>
+		<key>Frameworks/share_plus.framework/_CodeSignature/CodeResources</key>
+		<data>
+		rR8vcOdrjnhlbjDzG8BJa6g62Lw=
+		</data>
+		<key>Frameworks/share_plus.framework/share_plus</key>
+		<data>
+		XVOOvxUhyag7eBmys29Yly4KL3I=
 		</data>
 		<key>Frameworks/sqflite.framework/Info.plist</key>
 		<data>
@@ -298,7 +310,19 @@
 		</data>
 		<key>Frameworks/sqflite.framework/sqflite</key>
 		<data>
-		/hkn+Zj78vtrXejH472AHmO+Hyw=
+		BXQPKSFxSaA2lLZ2B3obpd5dIeY=
+		</data>
+		<key>Frameworks/url_launcher_ios.framework/Info.plist</key>
+		<data>
+		+Au2S6fpRW/soYIgwRUzZ+nywAA=
+		</data>
+		<key>Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources</key>
+		<data>
+		e3GQR2+C774xgtCztDgv/xj9VNI=
+		</data>
+		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
+		<data>
+		qLLLHdTR5iHlkMKqyVRnCMKEeKs=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -389,7 +413,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AmRgcl7P1M2jP6nM3QvDIwxqYPWVwrP9Q+ZAwsXPuxg=
+			LqsvJ4SEtXNoMAWu2TMmKHQIQn5i2YG/x8aXGQNiuSI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -403,7 +427,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jYYquSDH9tRNKama/9xsKavthuHaL+1BfsjTDQ7FBjs=
+			dyJJMATHsiso8+kRX5n69G24BOWc5/OHl4GV0vkTVmw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -424,7 +448,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			R6k35EF0Uci1F9yN8WC3NCUIvrc+f7qvrhCVUBJ2Mlo=
+			raEPQQSkp5J1eAcfC0tWxXlqw0BnJFcebNQPHjnFQyI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/data/mydatabase.db</key>
@@ -452,7 +476,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0ePqjEc2nBB8dbc3vAmpQVsiykdA+jF3l0G/UU/KYPI=
+			SxvRhZh1DS4KVZKqWtPi4DvMASX/qeSWi4ZV/zHb7hI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/vm_snapshot_data</key>
@@ -466,7 +490,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+BKOhSBQ5TCtAkImwfWuWsjlAqQWNTwZhYW5K02BMvA=
+			aT1nNVhFwgeFobgDHahy6mPXO9ulbOD89Hekiq7Pnmk=
 			</data>
 		</dict>
 		<key>Frameworks/FMDB.framework/Info.plist</key>
@@ -487,7 +511,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sfO4IJFXr5gueuumGB2etMmS0yZ5+zOiOppIPRR7rQI=
+			Wl0DDCLST7RyDdLDYN4ROTAccclA4pB4ZmbY0uU+PNk=
 			</data>
 		</dict>
 		<key>Frameworks/Flutter.framework/Headers/Flutter.h</key>
@@ -641,7 +665,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8swfeyIeWh/JfxsmUNru35D3TybS1l6sgeAzYo9/SJY=
+			a7bhDL4WAgwSPp9M/sPCt1Oymo+5N95hPd8bRu3mLj0=
 			</data>
 		</dict>
 		<key>Frameworks/Protobuf.framework/_CodeSignature/CodeResources</key>
@@ -662,7 +686,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vBB2QwdLs2Sfd2XEp8lBlVMqE+pdg3UizZGE06mzqNo=
+			nS6ifTyleBRyq/r4xM+xokb35qKGnsTO9SBh0/8e6ac=
 			</data>
 		</dict>
 		<key>Frameworks/SwiftProtobuf.framework/_CodeSignature/CodeResources</key>
@@ -788,7 +812,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			fJ7L8ZW80QNZ04tzqigdhNtQ7mr1uZMuMe+HbGV1bdg=
+			csejhGwucSvYAo1t+5QbVIl6bH4JQFixXa6P7n9tBWE=
 			</data>
 		</dict>
 		<key>Frameworks/reactive_ble_mobile.framework/Info.plist</key>
@@ -809,7 +833,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OnWZOocGNMho6JS4nYLgPpo7dzfFc7VrDFPvw1DDSzw=
+			b2+C0Du/vO6hKxkl27guY4Twi16KlxmpN9TuNcg0Ssw=
+			</data>
+		</dict>
+		<key>Frameworks/share_plus.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PfSfZCpvxpX3VNrH85e9u/w4GKoybR1KWQQTDZ6Um5U=
+			</data>
+		</dict>
+		<key>Frameworks/share_plus.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PHsmRbKjDO3HH7sYh9XuNyc9eafQUGi8xsFdJwUwcGo=
+			</data>
+		</dict>
+		<key>Frameworks/share_plus.framework/share_plus</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ODyjj92pGj9W0k2Q7DJ53bK7zpdZQ0+aIkSryTVVCG4=
 			</data>
 		</dict>
 		<key>Frameworks/sqflite.framework/Info.plist</key>
@@ -830,7 +875,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uUxST/WzRGG93jO7YzrnIBtHAd/awhvZ78bgkGDBK0M=
+			rCxY/5qEGEvIvmT5M8S2LpYlPAjpNu1qgYKJXqW8Jr0=
+			</data>
+		</dict>
+		<key>Frameworks/url_launcher_ios.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gybOTrZG/SKxww6Flaolk9ro3nE/LkHHt6/Sr8lCc+k=
+			</data>
+		</dict>
+		<key>Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ivAlsgxkD3SgVY5a6vKAKq5w3yUBi8l2mo3I6bnYIrs=
+			</data>
+		</dict>
+		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			825TrAJn7DSzED7/Vc+7z+R9m2wbH1XKuvQfT83+2YQ=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>

@@ -181,7 +181,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/path_provider_ios/path_provider_ios.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/reactive_ble_mobile/reactive_ble_mobile.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/share_plus/share_plus.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/sqflite/sqflite.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/url_launcher_ios/url_launcher_ios.framework"
 fi
 if [[ "$CONFIGURATION" == "Profile" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
@@ -189,7 +191,9 @@ if [[ "$CONFIGURATION" == "Profile" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/path_provider_ios/path_provider_ios.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/reactive_ble_mobile/reactive_ble_mobile.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/share_plus/share_plus.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/sqflite/sqflite.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/url_launcher_ios/url_launcher_ios.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
@@ -197,7 +201,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/path_provider_ios/path_provider_ios.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/reactive_ble_mobile/reactive_ble_mobile.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/share_plus/share_plus.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/sqflite/sqflite.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/url_launcher_ios/url_launcher_ios.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -4,7 +4,7 @@
             "outputFile": "/Users/user/Documents/fluttere_code/ble_student/ble/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-fa/values-fa.xml",
             "map": [
                 {
-                    "source": "/Users/user/.gradle/caches/transforms-3/348f6d52d990d4fb4fcc5abc17a1cdcd/transformed/core-1.6.0/res/values-fa/values-fa.xml",
+                    "source": "/Users/user/.gradle/caches/transforms-3/3287ed4cf8c32398866b0c1d2a55edb7/transformed/core-1.7.0/res/values-fa/values-fa.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
