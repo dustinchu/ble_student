@@ -207,7 +207,7 @@ class LineChartSample1State extends State<LineChartSample1> {
                               icon: Icon(
                                 Icons.save_alt_outlined,
                                 color: bleChartStatus.saveStatus
-                                    ? Colors.white
+                                    ? Colors.red
                                     : Colors.white38,
                               )),
                           SizedBox(

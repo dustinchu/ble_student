@@ -243,20 +243,6 @@ class _FolderDetailScreenState extends State<FolderDetailScreen> {
       body: ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
-          // String d = data[index].toString();
-          // int e = data[index].toString().indexOf("-");
-          // int s = data[index].toString().indexOf(":");
-          // String title = "";
-
-          // if (e != -1) {
-          //   title = d.substring(s, e);
-          // } else {
-          //   title = data[index]["name"].toString();
-          // }
-          // print(title);
-          // print(data[index]["name"]);
-          // data[index]["name"] = title;
-          //  print(data[index]["name"]);
           return Column(
             children: <Widget>[
               ListTile(
