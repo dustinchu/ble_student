@@ -99,6 +99,7 @@ class BleChartStatus extends ChangeNotifier {
 
   setType(int t) {
     type = t;
+    dbTableName = "";
     notifyListeners();
   }
 
@@ -429,7 +430,7 @@ class BleChartStatus extends ChangeNotifier {
     qx = electricityDmp(value[4], value[5], value[6], value[7]);
     qy = electricityDmp(value[8], value[9], value[10], value[11]);
     qz = electricityDmp(value[12], value[13], value[14], value[15]);
-    // showData = "qw:$qw\nqx:$qx\nqy:$qy\nqz:$qz";
+    showData = "qw:$qw\nqx:$qx\nqy:$qy\nqz:$qz";
     int data1 = hexToInt(value[17].toRadixString(16).padLeft(2, '0') +
         value[16].toRadixString(16).padLeft(2, '0'));
 
@@ -438,6 +439,9 @@ class BleChartStatus extends ChangeNotifier {
 
     int data3 = hexToInt(value[21].toRadixString(16).padLeft(2, '0') +
         value[20].toRadixString(16).padLeft(2, '0'));
+
+    // print(
+    //     "value ===$value  data1 ==$data1  data2 ==$data2  data3 ==$data3  data1-1${calculate1601(data1)}  data1-2${calculate1601(data2)} data1-3${calculate1601(data3)}");
     if (dbTableName != "") {
       // Domain=FMDatabase Code=1 "near "10": syntax error" UserInfo={NSLocalizedDescription=near "10": syntax error
       db.insert1604(dbTableName, dtStr(), qw, qx, qy, qz, calculate1601(data1),

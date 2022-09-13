@@ -131,7 +131,7 @@ class DB {
     var db = await openDB();
     try {
       int recordId = await db.rawInsert(
-          "INSERT INTO dmp_a (name, dt, qw, qx, qy,qz,ax,ay,az,gx,gy,gz) VALUES ('$name','$dt',$qw,$qx,$qy,$qz,$ax,$ay,$az,$gx,$qy,$qz)");
+          "INSERT INTO dmp_a (name, dt, qw, qx, qy,qz,ax,ay,az,gx,gy,gz) VALUES ('$name','$dt',$qw,$qx,$qy,$qz,$ax,$ay,$az,$gx,$gy,$gz)");
       log("inset record id  ==$recordId");
     } catch (e) {
       log("1605 create error= $e");
@@ -143,9 +143,11 @@ class DB {
   Future insert1604(String name, String dt, double qw, double qx, double qy,
       double qz, int gx, int gy, int gz) async {
     var db = await openDB();
+    print(
+        "insert===${"INSERT INTO dmp_g (name, dt, qw, qx, qy,qz,gx,gy,gz) VALUES ('$name','$dt',$qw,$qx,$qy,$qz,$gx,$gy,$gz)"}");
     try {
       int recordId = await db.rawInsert(
-          "INSERT INTO dmp_g (name, dt, qw, qx, qy,qz,gx,gy,gz) VALUES ('$name','$dt',$qw,$qx,$qy,$qz,$gx,$qy,$qz)");
+          "INSERT INTO dmp_g (name, dt, qw, qx, qy,qz,gx,gy,gz) VALUES ('$name','$dt',$qw,$qx,$qy,$qz,$gx,$gy,$gz)");
       log("inset record id  ==$recordId");
     } catch (e) {
       log("1605 create error= $e");
