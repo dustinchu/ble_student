@@ -215,9 +215,9 @@ class HomeBleChartStatus extends ChangeNotifier {
         a[2].toRadixString(16).padLeft(2, '0'));
     int data3 = hexToInt(a[5].toRadixString(16).padLeft(2, '0') +
         a[4].toRadixString(16).padLeft(2, '0'));
-    print(a[1].toRadixString(16).padLeft(2, '0') +
-        a[0].toRadixString(16).padLeft(2, '0'));
-    print(data1);
+    // print(a[1].toRadixString(16).padLeft(2, '0') +
+    //     a[0].toRadixString(16).padLeft(2, '0'));
+    // print(data1);
     int size = 0;
     if (acc[deviceId] != null) {
       if (acc[deviceId]![0].isNotEmpty) {
@@ -237,9 +237,9 @@ class HomeBleChartStatus extends ChangeNotifier {
               calculate1601(data1).toDouble()));
 
           acc[deviceId]![1].add(FlSpot(acc[deviceId]![1].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data2).toDouble()));
           acc[deviceId]![2].add(FlSpot(acc[deviceId]![2].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data3).toDouble()));
         }
       } else {
         List<List<FlSpot>> d = [[], [], [], [], [], [], [], [], [], []];
@@ -280,9 +280,9 @@ class HomeBleChartStatus extends ChangeNotifier {
               calculate1601(data1).toDouble()));
 
           gyro[deviceId]![1].add(FlSpot(gyro[deviceId]![1].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data2).toDouble()));
           gyro[deviceId]![2].add(FlSpot(gyro[deviceId]![2].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data3).toDouble()));
         }
       } else {
         List<List<FlSpot>> d = [[], [], [], [], [], [], [], [], [], []];
