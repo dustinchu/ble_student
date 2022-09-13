@@ -346,16 +346,16 @@ class HomeBleChartStatus extends ChangeNotifier {
               calculate1601(data1).toDouble()));
 
           dmpa[deviceId]![1].add(FlSpot(dmpa[deviceId]![1].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data2).toDouble()));
           dmpa[deviceId]![2].add(FlSpot(dmpa[deviceId]![2].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data3).toDouble()));
           dmpa[deviceId]![3].add(FlSpot(dmpa[deviceId]![3].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data4).toDouble()));
 
           dmpa[deviceId]![4].add(FlSpot(dmpa[deviceId]![4].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data5).toDouble()));
           dmpa[deviceId]![5].add(FlSpot(dmpa[deviceId]![5].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data6).toDouble()));
         }
       } else {
         List<List<FlSpot>> d = [[], [], [], [], [], [], [], [], [], []];
@@ -407,9 +407,9 @@ class HomeBleChartStatus extends ChangeNotifier {
               calculate1601(data1).toDouble()));
 
           dmpg[deviceId]![1].add(FlSpot(dmpg[deviceId]![1].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data2).toDouble()));
           dmpg[deviceId]![2].add(FlSpot(dmpg[deviceId]![2].length.toDouble(),
-              calculate1601(data1).toDouble()));
+              calculate1601(data3).toDouble()));
         }
       } else {
         List<List<FlSpot>> d = [[], [], [], [], [], [], [], [], [], []];
