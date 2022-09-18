@@ -6,6 +6,6 @@ framework module reactive_ble_mobile {
 }
 
 module reactive_ble_mobile.Swift {
-    header "reactive_ble_mobile-Swift.h"
-    requires objc
+  header "reactive_ble_mobile-Swift.h"
+  requires objc
 }

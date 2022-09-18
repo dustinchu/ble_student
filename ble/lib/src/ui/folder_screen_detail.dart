@@ -9,10 +9,12 @@ import '../../common/dialog.dart';
 import '../../common/service/db.dart';
 
 class FolderDetailScreen extends StatefulWidget {
-  FolderDetailScreen({Key? key, required this.title, required this.dt})
+  FolderDetailScreen(
+      {Key? key, required this.title, required this.dt, required this.keyName})
       : super(key: key);
   String title;
   String dt;
+  String keyName;
   @override
   State<FolderDetailScreen> createState() => _FolderDetailScreenState();
 }
@@ -28,8 +30,11 @@ class _FolderDetailScreenState extends State<FolderDetailScreen> {
   }
 
   getData() async {
+    print(
+        "sql code ==${"select ${widget.title}.* from folder , ${widget.title}  where  folder.name = ${widget.title}.name "}");
     data = await db.select(
-        "select ${widget.title}.* from folder , ${widget.title}  where  folder.name = ${widget.title}.name ");
+        "select ${widget.title}.* from folder , ${widget.title}  where  folder.name = ${widget.title}.name  and  ${widget.title}.name ='${widget.keyName}'");
+
     setState(() {});
   }
 
@@ -136,17 +141,15 @@ class _FolderDetailScreenState extends State<FolderDetailScreen> {
   String outPutStr(Map<String, dynamic> data) {
     switch (widget.title) {
       case "SIX":
-        return "name:SIX ax:${data["qx"]} ay:${data["qy"]} az:${data["qz"]} ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]}";
+        return "name:SIX ax:${data["qx"]} ay:${data["qy"]} az:${data["qz"]} ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]} dt:${data["dt"]}";
       case "GYRO":
-        return "name:GYRO ax:${data["qx"]} ay:${data["qy"]} az:${data["qz"]}";
+        return "name:GYRO ax:${data["qx"]} ay:${data["qy"]} az:${data["qz"]} dt:${data["dt"]}";
       case "DMP_G":
-        return "name:DMP_G qw:${data["qw"]} qx:${data["qx"]} qy:${data["qy"]} qz:${data["qz"]} gx:${data["gx"]} gy:${data["gy"]}  gz:${data["gz"]}";
-
+        return "name:DMP_G qw:${data["qw"]} qx:${data["qx"]} qy:${data["qy"]} qz:${data["qz"]} gx:${data["gx"]} gy:${data["gy"]}  gz:${data["gz"]} dt:${data["dt"]}";
       case "DMP_A":
-        return "name:DMP_A qw:${data["qw"]} qx:${data["qx"]} qy:${data["qy"]} qz:${data["qz"]} ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]} gx:${data["gx"]} gy:${data["gy"]}  gz:${data["gz"]}";
-
+        return "name:DMP_A qw:${data["qw"]} qx:${data["qx"]} qy:${data["qy"]} qz:${data["qz"]} ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]} gx:${data["gx"]} gy:${data["gy"]}  gz:${data["gz"]} dt:${data["dt"]}";
       case "ACC":
-        return "name:ACC ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]}";
+        return "name:ACC ax:${data["ax"]} ay:${data["ay"]} az:${data["az"]} dt:${data["dt"]}";
     }
     return "";
   }

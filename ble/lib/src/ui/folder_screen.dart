@@ -21,6 +21,7 @@ class _FolderScreenState extends State<FolderScreen> {
 
   getData() async {
     data = await db.select("select * from folder");
+    print("folder  $data");
     setState(() {});
   }
 
@@ -35,7 +36,7 @@ class _FolderScreenState extends State<FolderScreen> {
           itemCount: data.length,
           itemBuilder: (context, index) {
             String d = data[index]["name"].toString();
-            print(d);
+            print("d name ==$d");
             int i = d.indexOf("-");
             String title = "";
             String subTitle = "";
@@ -51,11 +52,12 @@ class _FolderScreenState extends State<FolderScreen> {
                   title: Text(title),
                   subtitle: Text(subTitle),
                   onTap: () {
+                    print("click  $title");
                     Navigator.push<void>(
                       context,
                       MaterialPageRoute(
-                        builder: (_) =>
-                            FolderDetailScreen(title: title, dt: subTitle),
+                        builder: (_) => FolderDetailScreen(
+                            title: title, dt: subTitle, keyName: d),
                       ),
                     ).then((value) async => await getData());
                   },
