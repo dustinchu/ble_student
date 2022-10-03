@@ -294,46 +294,6 @@ class HomeLineChartSample1State extends State<HomeLineChartSample1> {
                   const SizedBox(
                     height: 30,
                   ),
-                  // Expanded(
-                  //   child: Padding(
-                  //     padding: EdgeInsets.only(right: 16.0, left: 6.0),
-                  //     child: (bleChartStatus.type[widget.deviceId] == 1602 ||
-                  //             bleChartStatus.type[widget.deviceId] == 1604)
-                  //         ? Row(
-                  //             mainAxisAlignment: MainAxisAlignment.center,
-                  //             crossAxisAlignment: CrossAxisAlignment.center,
-                  //             children: [
-                  //               Column(
-                  //                 crossAxisAlignment: CrossAxisAlignment.start,
-                  //                 mainAxisAlignment: MainAxisAlignment.center,
-                  //                 children: [
-                  //                   Text(
-                  //                       "qw: ${bleChartStatus.qValue[widget.deviceId]["qw"]}"),
-                  //                   const SizedBox(
-                  //                     height: 10,
-                  //                   ),
-                  //                   Text(
-                  //                       "qx: ${bleChartStatus.qValue[widget.deviceId]["qx"]}"),
-                  //                   const SizedBox(
-                  //                     height: 10,
-                  //                   ),
-                  //                   Text(
-                  //                       "qy: ${bleChartStatus.qValue[widget.deviceId]["qy"]}"),
-                  //                   const SizedBox(
-                  //                     height: 10,
-                  //                   ),
-                  //                   Text(
-                  //                       "qz: ${bleChartStatus.qValue[widget.deviceId]["qz"]}"),
-                  //                 ],
-                  //               ),
-                  //             ],
-                  //           )
-                  //         : _HomeLineChart(
-                  //             isShowingMainData: false,
-                  //             deviceId: widget.deviceId,
-                  //           ),
-                  //   ),
-                  // ),
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(right: 16.0, left: 6.0),

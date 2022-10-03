@@ -515,8 +515,8 @@ class DeviceInteractionState extends State<DeviceInteraction> {
             child: CupertinoRadioChoice(
                 choices: const {
                   '1601': 'SIX',
-                  '1606': 'ACC',
-                  '1605': 'GYRO',
+                  '1606': 'GYRO',
+                  '1605': 'ACC',
                   '1602': 'DMP_A',
                   '1604': 'DMP_G',
                 },
@@ -588,7 +588,9 @@ class DeviceInteractionState extends State<DeviceInteraction> {
           SizedBox(
             height: 20,
           ),
-          LineChartSample1(),
+          LineChartSample1(
+            deviceId: widget.device.id,
+          ),
           // Expanded(
           //   child: CustomScrollView(
           //     slivers: [

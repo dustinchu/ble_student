@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_reactive_ble_example/common/util/imu.dart';
 import 'package:flutter_reactive_ble_example/src/status/ble_chart_status.dart';
 import 'package:provider/provider.dart';
 
@@ -80,6 +81,56 @@ class _LineChart extends StatelessWidget {
 
     LineChartData sampleData2 = LineChartData(
       lineTouchData: lineTouchData2,
+      extraLinesData: ExtraLinesData(horizontalLines: [
+        HorizontalLine(
+          y: 8191,
+          color: Colors.white10,
+          strokeWidth: 0.5,
+          dashArray: [10, 5],
+        ),
+        HorizontalLine(
+          y: 16384,
+          color: Colors.white10,
+          strokeWidth: 0.5,
+          dashArray: [10, 5],
+        ),
+        HorizontalLine(
+          y: 24575,
+          color: Colors.white10,
+          strokeWidth: 0.5,
+          dashArray: [10, 5],
+        ),
+        HorizontalLine(
+          y: 32767,
+          color: Colors.white10,
+          strokeWidth: 0.5,
+          dashArray: [10, 5],
+        ),
+        HorizontalLine(
+          y: -8191,
+          color: Colors.white10,
+          strokeWidth: 0.5,
+          dashArray: [10, 5],
+        ),
+        HorizontalLine(
+          y: -16384,
+          color: Colors.white10,
+          strokeWidth: 0.5,
+          dashArray: [10, 5],
+        ),
+        HorizontalLine(
+          y: -24575,
+          color: Colors.white10,
+          strokeWidth: 0.5,
+          dashArray: [10, 5],
+        ),
+        HorizontalLine(
+          y: -32767,
+          color: Colors.white10,
+          strokeWidth: 0.5,
+          dashArray: [10, 5],
+        )
+      ]),
       gridData: gridData,
       titlesData: titlesData2,
       borderData: borderData,
@@ -102,10 +153,38 @@ class _LineChart extends StatelessWidget {
       );
 
   FlTitlesData get titlesData2 => FlTitlesData(
-        show: false,
+        show: true,
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 10,
+            getTitlesWidget: (value, meta) {
+              // Widget axisTitle = Text(
+              //   value > 1000 || value < -1000
+              //       ? (value / 1000).toInt().toString() + "K"
+              //       : value.toString(),
+              //   style:
+              //       TextStyle(fontSize: value.toString().length > 4 ? 12 : 14),
+              // );
+
+              // A workaround to hide the max value title as FLChart is overlapping it on top of previous
+              return SideTitleWidget(
+                  axisSide: meta.axisSide, child: const Text(""));
+            },
+          ),
+        ),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        rightTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        topTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
       );
 
-  FlGridData get gridData => FlGridData(show: false);
+  FlGridData get gridData => FlGridData(show: true);
 
   FlBorderData get borderData => FlBorderData(
         show: false,
@@ -167,8 +246,8 @@ class _LineChart extends StatelessWidget {
 }
 
 class LineChartSample1 extends StatefulWidget {
-  const LineChartSample1({Key? key}) : super(key: key);
-
+  LineChartSample1({Key? key, required this.deviceId}) : super(key: key);
+  String deviceId;
   @override
   State<StatefulWidget> createState() => LineChartSample1State();
 }
@@ -184,7 +263,7 @@ class LineChartSample1State extends State<LineChartSample1> {
     BleChartStatus bleChartStatus = Provider.of<BleChartStatus>(context);
     return Center(
       child: AspectRatio(
-        aspectRatio: 2,
+        aspectRatio: 1.5,
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor.withOpacity(0.5),
@@ -196,7 +275,7 @@ class LineChartSample1State extends State<LineChartSample1> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   SizedBox(
-                    height: 30,
+                    height: 50,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -215,11 +294,19 @@ class LineChartSample1State extends State<LineChartSample1> {
                           )
                         ]),
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 12.0),
+                    child: Text(imu[widget.deviceId] ?? ""),
+                  ),
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(right: 16.0, left: 6.0),
                       child: _LineChart(isShowingMainData: false),
                     ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 12.0),
+                    child: Text(imu[widget.deviceId] ?? ""),
                   ),
                   SizedBox(
                     height: 100,

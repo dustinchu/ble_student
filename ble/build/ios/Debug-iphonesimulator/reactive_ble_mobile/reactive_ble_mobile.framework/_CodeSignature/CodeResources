@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/reactive_ble_mobile-Swift.h</key>
 		<data>
-		ftTuBxwwhgAn3tnXWAK53iLdnTk=
+		QMLYzkhHXzEJyQM+rn/DMcDcW9Y=
 		</data>
 		<key>Headers/reactive_ble_mobile-umbrella.h</key>
 		<data>
@@ -18,35 +18,43 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		NMA/kcltlcSjbw2vFofzjxTlRhc=
+		JztaymQ89q1T8nUrYmQLyCVpnsI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		RNKPzMrB8Pwwz/Wlns57bHgq0cs=
+		+c0s8qJwSrMqGlT8sppLZGWmnvI=
 		</data>
 		<key>Modules/reactive_ble_mobile.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		x01HH+xAOCInBSqpwiaCEnLKFv4=
+		JnDofNpEDrA0ZgcGR6qNH2sgyNo=
 		</data>
 		<key>Modules/reactive_ble_mobile.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		yiJZFt57S8ICEJGuki1WyPykU0g=
+		vXVVAWV9HPOKg5tx+7shOzIX7OE=
+		</data>
+		<key>Modules/reactive_ble_mobile.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<data>
+		FSPnLbho3G+LL9smI3XgVOqBIQ4=
 		</data>
 		<key>Modules/reactive_ble_mobile.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Lkwo4aI6F7ybPPUXmpi7JwFztDA=
+		KUpJZDB8y2WywkTy7aa7vo7IqUA=
 		</data>
 		<key>Modules/reactive_ble_mobile.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		E8xAMAJgLM8lvkgM7DjzUyHVF7g=
+		kCIE6VFQKxn1uVLknqTu1VycA8U=
+		</data>
+		<key>Modules/reactive_ble_mobile.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
+		<data>
+		FSPnLbho3G+LL9smI3XgVOqBIQ4=
 		</data>
 		<key>Modules/reactive_ble_mobile.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		mhVUPlVZ4aentINSDu6+p6NOCV8=
+		NDNZovA6+690eIveP4cw99E8J6U=
 		</data>
 		<key>Modules/reactive_ble_mobile.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		YG4Jid+XHvlh3uogBxHBP42pOWc=
+		/pA5Zw6GoFpQSUqEE3qQC34YPoY=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -62,7 +70,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GzTqNx7R9KAsJtUnZBMge8LehAMyrtUKGkA7FM264lk=
+			VPYXLYw/xYM66IAeRypfwUtzKibfIILpP5Jyd5GIEuQ=
 			</data>
 		</dict>
 		<key>Headers/reactive_ble_mobile-umbrella.h</key>
@@ -76,49 +84,63 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pX+0mLC7kVQLPeNvG27ZWSTETvKpIUqXdtqfzisJ9BM=
+			ezQEbWW9630umEavgqY/KBV0wB/YX41y1JxyuaG22Gk=
 			</data>
 		</dict>
 		<key>Modules/reactive_ble_mobile.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hjeCm2WEffm4CEC8n1VecJn7PUxmbrhyeOg2ymTqoyc=
+			IHjIFlRKOAG4RZPwKBXsZycU0Fgw9qIjWs3OoF2Hld0=
 			</data>
 		</dict>
 		<key>Modules/reactive_ble_mobile.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ckrcWMhR8FM0DOAp59AK9hQCOwqRGF5fABBKXNRsB/k=
+			/AWUebbGMecn7VIY/170PhEZz1pABOdE8Crk1r7Q6FE=
+			</data>
+		</dict>
+		<key>Modules/reactive_ble_mobile.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
 			</data>
 		</dict>
 		<key>Modules/reactive_ble_mobile.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XsKQKMpF2QBuJ4OmDbCEkkr1/c926Y4Od22SmWRBeAU=
+			g5g6X4Hn3ikYmjy4bnOkud18k9s3qGWWWJvDCoApa0Q=
 			</data>
 		</dict>
 		<key>Modules/reactive_ble_mobile.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KhM57QcrGGGStj614zOUULdxr1jPiPckiQalQfmUWN0=
+			xGAvOBX9CpTKwYA1sMUiJGBi5N5l7QyTHOldCIHD+ws=
+			</data>
+		</dict>
+		<key>Modules/reactive_ble_mobile.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
 			</data>
 		</dict>
 		<key>Modules/reactive_ble_mobile.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QYTbA9heH82x3BUMH3ArxIwa51Gb12AARU1xh3SmynM=
+			85mTjMtVnpnmA0LU5g5ZcSdUz1LlC4GnUf5Yfhse1rY=
 			</data>
 		</dict>
 		<key>Modules/reactive_ble_mobile.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gEus4l+biWwMrUXDCRk46WJZZ+9GvEULn77csvAbUTo=
+			vP5gGi4GcBvbnWW+hC1E/XXSEWGD886hp7hm17hlVXw=
 			</data>
 		</dict>
 	</dict>

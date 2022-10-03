@@ -19,7 +19,7 @@ class BleChartStatus extends ChangeNotifier {
   List<List<FlSpot>> dmpg = [[], [], [], [], [], [], [], [], [], []];
   String showData = "";
   int minx = 0;
-  int maxx = 300;
+  int maxx = 100;
   var rng = Random();
   int index = 0;
   int lineCount = 6;
@@ -106,7 +106,7 @@ class BleChartStatus extends ChangeNotifier {
   Future<void> cleanData() async {
     index = 0;
     minx = 0;
-    maxx = 300;
+    maxx = 100;
     // data.clear();
   }
 

@@ -5,6 +5,8 @@ import 'package:flutter_reactive_ble_example/src/ble/ble_device_connector.dart';
 import 'package:flutter_reactive_ble_example/src/ble/ble_device_interactor.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/util/imu.dart';
+
 class ImuScreen extends StatefulWidget {
   ImuScreen({Key? key, required this.deviceId}) : super(key: key);
   String deviceId;
@@ -182,6 +184,7 @@ class _ImuScreenState extends State<ImuScreen> {
                           Column(
                             children: [
                               _Row("SRV_ACC_FSR_SCALE_2G", btn(() {
+                                imu[widget.deviceId] = "2G";
                                 outputStr = "SRV_ACC_FSR_SCALE_2G";
                                 write(
                                     serviceId: "FF00",
@@ -191,6 +194,7 @@ class _ImuScreenState extends State<ImuScreen> {
                               })),
                               divider,
                               _Row("SRV_ACC_FSR_SCALE_4G", btn(() {
+                                imu[widget.deviceId] = "4G";
                                 outputStr = "SRV_ACC_FSR_SCALE_4G";
                                 write(
                                     serviceId: "FF00",
@@ -200,6 +204,7 @@ class _ImuScreenState extends State<ImuScreen> {
                               })),
                               divider,
                               _Row("SRV_ACC_FSR_SCALE_8G", btn(() {
+                                imu[widget.deviceId] = "8G";
                                 outputStr = "SRV_ACC_FSR_SCALE_8G";
                                 write(
                                     serviceId: "FF00",
@@ -209,6 +214,7 @@ class _ImuScreenState extends State<ImuScreen> {
                               })),
                               divider,
                               _Row("SRV_ACC_FSR_SCALE_16G", btn(() {
+                                imu[widget.deviceId] = "16G";
                                 outputStr = "SRV_ACC_FSR_SCALE_16G";
                                 write(
                                     serviceId: "FF00",
